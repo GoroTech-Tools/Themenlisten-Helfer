@@ -42,7 +42,16 @@ flowchart LR
 - `release/Themenlisten-Helfer_v<version>.zip`
 - `release/RELEASE_NOTES_v<version>.md`
 
-Hinweis: `dist/ThemenlistenHelfer_GUI.exe` ist die rohe PyInstaller-Ausgabe und der technische Ausgangspunkt für den späteren Release-Build. Für GitHub Releases wird sie direkt aus `dist/` verwendet; sie wird nicht mehr nach `release/` kopiert. Der lokale Build-Entrypoint kann zusätzlich eine umbenannte Kopie für lokale Pakete erzeugen.
+## Warum die EXE in `dist/` bleibt
+
+`dist/ThemenlistenHelfer_GUI.exe` ist die direkte PyInstaller-Ausgabe und damit die technisch maßgebliche EXE des Builds. Sie bleibt in `dist/`, weil:
+
+- dort der Build-Output unverändert und eindeutig nachvollziehbar abgelegt wird,
+- GitHub Releases die Datei direkt aus `dist/` übernehmen,
+- die zusätzliche Kopie nach `release/` keinen fachlichen Mehrwert mehr bringt,
+- der lokale Build-Entrypoint für Sonderfälle weiterhin eine umbenannte Kopie erzeugen kann, ohne den Standard-Release-Pfad zu ändern.
+
+Kurz: `dist/` ist die Build-Wahrheit, `release/` enthält die veröffentlichungsrelevanten Zusatzartefakte wie ZIP und Release Notes.
 
 ## GitHub-Release-Hinweis
 
@@ -61,7 +70,7 @@ Release Notes sollten enthalten:
 - Funktionsänderungen
 - Breaking Changes
 - Migrationshinweise (falls Pfade/Dateiformate geändert wurden)
-   - Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `dist/ThemenlistenHelfer_GUI.exe`)
+- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `dist/ThemenlistenHelfer_GUI.exe`)
 
 ## Release-Workflow testen (Tag-basiert)
 
