@@ -82,7 +82,7 @@ PowerShell-Standardaufruf:
 
 - Workflow: `.github/workflows/release.yml`
 - Trigger: Push eines Tags im Format `v*` (z. B. `v2.4.5`)
-- Ergebnis: Build auf `windows-latest`, automatische GitHub Release Notes und Upload von EXE/ZIP als Release-Assets
+- Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md`, ergänzende GitHub Release Notes und Upload von EXE/ZIP/Release Notes als Release-Assets
 - Release-Titel-Schema: `Themenlisten-Helfer v...` (z. B. `Themenlisten-Helfer v1.0.0`)
 - Guard: Bei Tag-Builds muss `src/version.txt` exakt zur Tag-Version passen (z. B. `v2.4.5` ↔ `2.4.5`), sonst bricht der Workflow mit Fehler ab
 - Guard: Tags müssen semantisch formatiert sein: `vMAJOR.MINOR.PATCH` (z. B. `v2.4.5`)

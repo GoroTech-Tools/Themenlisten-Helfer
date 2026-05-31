@@ -113,6 +113,30 @@ powershell -Command "Compress-Archive -Path dist\!EXENAME!, 'data', 'output', '!
 
 echo Archiv erstellt: !RELEASE_DIR!\!ZIPNAME!
 
+REM --- Release Notes fuer dieses Release erzeugen ---
+set NOTESNAME=RELEASE_NOTES_v!NEWVERSION!.md
+set NOTESFILE=!RELEASE_DIR!\!NOTESNAME!
+> "!NOTESFILE!" echo # Release Notes v!NEWVERSION!
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo ## Enthalten
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo - Themenlisten-Helfer im Versionsstand `!NEWVERSION!`.
+>> "!NOTESFILE!" echo - Release-Artefakte im Schema `Themenlisten-Helfer_^^^<version^>^.exe` und `Themenlisten-Helfer_v^^^<version^>^.zip`.
+>> "!NOTESFILE!" echo - Dokumentation unter `docs/` sowie ergaenzende GitHub Release Notes im Release-Eintrag.
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo ## Artefakte
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo - `release/!EXENAME!`
+>> "!NOTESFILE!" echo - `release/!ZIPNAME!`
+>> "!NOTESFILE!" echo - `release/!NOTESNAME!`
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo ## Hinweise
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `release/!EXENAME!`
+>> "!NOTESFILE!" echo - Vollstaendiger Commit-Verlauf: `https://github.com/TomGorontzy/Themenlisten-Helfer/commits/v!NEWVERSION!`
+
+echo Release Notes erstellt: !NOTESFILE!
+
 
 REM Nur die letzten 3 Builds im dist-Verzeichnis behalten
 pushd dist

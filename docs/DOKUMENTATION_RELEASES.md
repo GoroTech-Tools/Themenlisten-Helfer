@@ -41,6 +41,7 @@ flowchart LR
 - `dist/Themenlisten-Helfer_<version>.exe`
 - `release/Themenlisten-Helfer_<version>.exe`
 - `release/Themenlisten-Helfer_v<version>.zip`
+- `release/RELEASE_NOTES_v<version>.md`
 
 ## GitHub-Release-Hinweis
 
@@ -51,6 +52,8 @@ Release-Titel auf GitHub folgen dem Schema:
 Beispiel: `Themenlisten-Helfer v1.0.0`.
 
 Falls versehentlich ein Titel wie `Release v...` entsteht, korrigiert die Guardrail im Release-Workflow den Titel automatisch.
+
+Zusätzlich erzeugt der Build bzw. der Release-Workflow für jede Version eine Release-Notes-Datei im Schema `release/RELEASE_NOTES_v<version>.md`. Diese Datei wird als Release-Asset hochgeladen und als Basistext für den GitHub-Release-Eintrag verwendet; die automatisch generierten GitHub Release Notes werden daran angehängt.
 
 Release Notes sollten enthalten:
 
