@@ -36,7 +36,7 @@ Die folgenden Einträge dokumentieren frühere interne Entwicklungsstände vor d
 
 ### Added (2.5.4)
 
-- Build-Skript aktualisiert Versionsnummern in `README.md`, `docs/ANWENDERDOKUMENTATION.md` und `docs/RELEASE_PROZESS.md` nun automatisch mit jedem Build.
+- Build-Skript aktualisiert Versionsnummern in `README.md`, `docs/DOKUMENTATION_ANWENDER.md` und `docs/DOKUMENTATION_RELEASES.md` nun automatisch mit jedem Build.
 
 ### Updated (2.5.4)
 
@@ -52,14 +52,14 @@ Die folgenden Einträge dokumentieren frühere interne Entwicklungsstände vor d
 ### Updated (2.5.3)
 
 - MIT-Lizenz eingeführt; Copyright-Inhaber: Dr. Thomas Gorontzy (GoroTech).
-- Anwenderdokumentation erweitert: Hinweise zur Vorlagenpflege (Kopf-/Fußzeilen, Platzhalter), E-Mail-Konfiguration im Tabellenblatt `E-Mail-Konfiguration`, sowie Hinweise zu den Tabellenblättern `Vorbereitung` und `Hilfstabellen`.
+- Dokumentation Anwender erweitert: Hinweise zur Vorlagenpflege (Kopf-/Fußzeilen, Platzhalter), E-Mail-Konfiguration im Tabellenblatt `E-Mail-Konfiguration`, sowie Hinweise zu den Tabellenblättern `Vorbereitung` und `Hilfstabellen`.
 
 ## [2.5.2] - 2026-05-18
 
 ### Fixed (2.5.2)
 
 - PyInstaller-Build verwendet nun konsistent das vorgesehene 64-Bit-Python und installiert Abhängigkeiten aus `src/requirements.txt` (mit Root-Fallback) vor dem Build.
-- Fehlende Laufzeit-Abhängigkeiten wie `Pillow` (`PIL`) und `python-docx` (`docx`) werden im Build- und Release-Prozess korrekt berücksichtigt.
+- Fehlende Laufzeit-Abhängigkeiten wie `Pillow` (`PIL`) und `python-docx` (`docx`) werden im Build- und in der Dokumentation Releases korrekt berücksichtigt.
 - Pfadauflösung für Onefile-Builds wurde robuster gemacht; Ressourcen werden nun zuverlässig aus `sys._MEIPASS` und dem EXE-Verzeichnis geladen.
 - Abstürze durch `None`-Pfade bei Dateiprüfungen wurden abgefangen.
 - Statusmeldungen der GUI melden Abbrüche und Teilerfolge jetzt präziser statt fälschlich pauschal Erfolg zu signalisieren.
@@ -75,7 +75,7 @@ Die folgenden Einträge dokumentieren frühere interne Entwicklungsstände vor d
 ### Added (2.4.4)
 
 - Neue, GitHub-fähige Projektstruktur (`assets`, `config`, `data`, `docs`, `output`, `templates`, `.github`).
-- Vollständige Dokumentation für Anwender, Entwicklung und Release-Prozess.
+- Vollständige Dokumentation Anwender, Dokumentation Technik und Dokumentation Releases.
 - GitHub-Standards (`.gitignore`, `.gitattributes`, Issue- und PR-Templates, CI-Workflow).
 - `src/requirements.txt` für reproduzierbare Python-Umgebung.
 

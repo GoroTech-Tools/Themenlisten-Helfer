@@ -1,4 +1,4 @@
-# Anwenderdokumentation
+# Dokumentation Anwender
 
 ## Zweck
 
@@ -15,13 +15,13 @@ Zusätzlich dient die Anwendung als Arbeitserleichterung für die Begleitung der
 flowchart LR
    A[Anwendung starten] --> B[Excel-Datei prüfen]
    B --> C[Vorlagen bereitstellen]
-   C --> D[Themenlistenhelfer starten]
+   C --> D[Themenlisten-Helfer starten]
    D --> E[Themenlisten erzeugen]
    E --> F[Outlook-Entwürfe erstellen]
    F --> G[Ergebnisse in Themenlisten prüfen]
 ```
 
-![Ablauf Anwenderdokumentation](diagramme/anwender_ablauf.svg)
+![Ablauf Dokumentation Anwender](diagramme/anwender_ablauf.svg)
 
 ## Voraussetzungen
 
@@ -62,7 +62,7 @@ Das Tabellenblatt `Hilfstabellen` dient ebenfalls als Hilfsmittel und sollte nic
 
 1. Anwendung starten.
 2. Über **„Auswahl Teilnehmende zu Lernbereichen“** die Excel-Datei prüfen/anpassen.
-3. Über **„Themenlistenhelfer starten“** den Prozess ausführen.
+3. Über **„Themenlisten-Helfer starten“** den Prozess ausführen.
 4. Statusmeldungen oben im Fenster beachten.
 5. Ergebnisse im Ordner `Themenlisten/` prüfen.
 
@@ -87,7 +87,7 @@ Das Tabellenblatt `Hilfstabellen` dient ebenfalls als Hilfsmittel und sollte nic
 
 - Prüfen, ob Datei nach Muster `Themenliste_<Lernbereich>*.docx` oder `Themenliste_<Lernbereich>*.dotm` vorliegt.
 - Ordner prüfen: `data/Themenlisten-Vorlagen/`.
-- Bei Nutzung der EXE bitte möglichst die aktuelle Version `release/Themenlistenhelfer_2.5.4.exe` verwenden.
+- Bei Nutzung der EXE bitte möglichst die aktuelle Version `release/Themenlisten-Helfer_1.0.0.exe` verwenden.
 
 ### Excel-Datei nicht gefunden
 

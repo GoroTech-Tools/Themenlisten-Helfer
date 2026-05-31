@@ -57,19 +57,19 @@ REM Neue Versionsnummer in version.txt schreiben
 
 REM --- Versionsnummern in Dokumentation automatisch aktualisieren ---
 echo Aktualisiere Dokumentation (!OLD_VERSION! -^> !NEWVERSION!)...
-powershell -NoProfile -Command "$old='!OLD_VERSION!'; $new='!NEWVERSION!'; $enc=[Text.UTF8Encoding]::new($false); $files=@('README.md','docs\ANWENDERDOKUMENTATION.md','docs\RELEASE_PROZESS.md'); foreach($f in $files){ if(Test-Path $f){ $fp=(Resolve-Path $f).Path; $c=[IO.File]::ReadAllText($fp,$enc); $u=$c.Replace($old,$new); if($c -ne $u){ [IO.File]::WriteAllText($fp,$u,$enc); Write-Host ('Aktualisiert: '+$f) } } }"
+powershell -NoProfile -Command "$old='!OLD_VERSION!'; $new='!NEWVERSION!'; $enc=[Text.UTF8Encoding]::new($false); $files=@('README.md','docs\DOKUMENTATION_ANWENDER.md','docs\DOKUMENTATION_RELEASES.md'); foreach($f in $files){ if(Test-Path $f){ $fp=(Resolve-Path $f).Path; $c=[IO.File]::ReadAllText($fp,$enc); $u=$c.Replace($old,$new); if($c -ne $u){ [IO.File]::WriteAllText($fp,$u,$enc); Write-Host ('Aktualisiert: '+$f) } } }"
 if errorlevel 1 (
     echo [WARNUNG] Dokumentations-Update fehlgeschlagen - Build wird fortgesetzt.
 )
 
 REM EXE-Namen mit Versionsnummer setzen
-set EXENAME=Themenlistenhelfer_!NEWVERSION!.exe
+set EXENAME=Themenlisten-Helfer_!NEWVERSION!.exe
 
 REM Vorherige EXE löschen
 if exist dist\!EXENAME! del dist\!EXENAME!
 
 REM Alte ZIP-Archive löschen
-for %%f in ("!RELEASE_DIR!\Themenlistenhelfer_v*.zip") do del "%%~f"
+for %%f in ("!RELEASE_DIR!\Themenlisten-Helfer_v*.zip") do del "%%~f"
 
 REM Build mit PyInstaller (Interpreter robust aufloesen)
 set PYTHON64=.venv\Scripts\python.exe
@@ -107,7 +107,7 @@ move dist\ThemenlistenHelfer_GUI.exe dist\!EXENAME!
 
 
 REM --- Archivierung als ZIP mit Versionsnummer ---
-set ZIPNAME=Themenlistenhelfer_v!NEWVERSION!.zip
+set ZIPNAME=Themenlisten-Helfer_v!NEWVERSION!.zip
 if exist "!RELEASE_DIR!\!ZIPNAME!" del "!RELEASE_DIR!\!ZIPNAME!"
 powershell -Command "Compress-Archive -Path dist\!EXENAME!, 'data', 'output', '!IMG_FILE!', '!VERSION_FILE!', 'README.md', 'docs' -DestinationPath '!RELEASE_DIR!\!ZIPNAME!'"
 
@@ -116,14 +116,14 @@ echo Archiv erstellt: !RELEASE_DIR!\!ZIPNAME!
 
 REM Nur die letzten 3 Builds im dist-Verzeichnis behalten
 pushd dist
-for /f "skip=3" %%f in ('dir /b /o-d Themenlistenhelfer_*.exe') do del "%%f"
+for /f "skip=3" %%f in ('dir /b /o-d Themenlisten-Helfer_*.exe') do del "%%f"
 popd
 
 REM Bereits vorhandene EXEs im Release-Verzeichnis löschen
-for %%f in ("!RELEASE_DIR!\Themenlistenhelfer_*.exe") do del "%%~f"
+for %%f in ("!RELEASE_DIR!\Themenlisten-Helfer_*.exe") do del "%%~f"
 
 REM Neueste EXE aus dist ins Release-Verzeichnis kopieren
-for /f "delims=" %%f in ('dir /b /o-d dist\Themenlistenhelfer_*.exe') do (
+for /f "delims=" %%f in ('dir /b /o-d dist\Themenlisten-Helfer_*.exe') do (
     copy "dist\%%f" "!RELEASE_DIR!\"
     goto :copiedexe
 )

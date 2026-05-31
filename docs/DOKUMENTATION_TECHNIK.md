@@ -1,4 +1,4 @@
-# Entwicklerdokumentation
+# Dokumentation Technik
 
 ## Systemüberblick
 
@@ -12,7 +12,7 @@ flowchart LR
     D --> G[Ausgabeordner]
 ```
 
-![Systemüberblick Entwicklerdokumentation](diagramme/technik_systemuebersicht.svg)
+![Systemüberblick Dokumentation Technik](diagramme/technik_systemuebersicht.svg)
 
 ## Architektur (aktuell)
 
@@ -54,7 +54,7 @@ flowchart TD
     F --> H[Outlook Drafts]
 ```
 
-![Datenfluss Entwicklerdokumentation](diagramme/technik_datenfluss.svg)
+![Datenfluss Dokumentation Technik](diagramme/technik_datenfluss.svg)
 
 ## Build & Packaging
 
@@ -75,7 +75,7 @@ flowchart TD
 - Ausgabepfad auf einzelnen Ordner `Themenlisten/` vereinfacht; `output/Themenlisten/` entfällt als Schreibziel
 - Pylance-Fehler beseitigt: `_MEIPASS`-Attributzugriff abgesichert, `Optional[str]`-Rückgabetyp in `resolve_path`, explizite `None`-Guards vor `os.makedirs` und `os.path.join`
 - MIT-Lizenz eingeführt (Copyright Dr. Thomas Gorontzy / GoroTech)
-- Anwenderdokumentation um Vorlagen- und E-Mail-Konfigurationshinweise erweitert
+- Dokumentation Anwender um Vorlagen- und E-Mail-Konfigurationshinweise erweitert
 
 ## Geplante Modularisierung (`src/`)
 

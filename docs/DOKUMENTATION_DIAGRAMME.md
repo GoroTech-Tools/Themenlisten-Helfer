@@ -1,4 +1,4 @@
-# Diagramme (Mermaid)
+# Dokumentation Diagramme (Mermaid)
 
 Dieses Verzeichnis enthält die ausgelagerten Mermaid-Quellen der Dokumentation.
 
@@ -17,16 +17,16 @@ Dieses Verzeichnis enthält die ausgelagerten Mermaid-Quellen der Dokumentation.
 
 ### Quell-Dateien (Mermaid)
 
-#### Anwenderdokumentation
+#### Dokumentation Anwender
 
 - `docs/diagramme/anwender_ablauf.mmd`
 
-#### Entwicklerdokumentation
+#### Dokumentation Technik
 
 - `docs/diagramme/technik_systemuebersicht.mmd`
 - `docs/diagramme/technik_datenfluss.mmd`
 
-#### Release-Prozess
+#### Dokumentation Releases
 
 - `docs/diagramme/release_pipeline.mmd`
 

@@ -287,7 +287,7 @@ class ThemenlistenApp:
                 version = ""
         except Exception:
             version = ""
-        self.root.title(f"Themenlistenhelfer {version}")
+        self.root.title(f"Themenlisten-Helfer {version}")
         self.root.geometry("800x400")  # Noch breiter und höher für Bild
         self.excel_path = tk.StringVar()
         # Fortschrittsbalken statt Status-Text
@@ -325,7 +325,7 @@ class ThemenlistenApp:
             pass
         label_excel.pack(anchor="w", pady=(0,5))
         btn_excel = tk.Button(frame_left, text="Auswahl Teilnehmende zu Lernbereichen", command=self.excel_bearbeiten, bg="#FFA500", fg="black", activebackground="#FFB733", activeforeground="white")
-        btn_start = tk.Button(frame_left, text="Themenlistenhelfer starten", command=self.batch_starten, bg="#4CAF50", fg="white", activebackground="#6FD36F", activeforeground="white")
+        btn_start = tk.Button(frame_left, text="Themenlisten-Helfer starten", command=self.batch_starten, bg="#4CAF50", fg="white", activebackground="#6FD36F", activeforeground="white")
         try:
             btn_excel.configure(font=("Calibri", 11))
             btn_start.configure(font=("Calibri", 11))
@@ -340,7 +340,7 @@ class ThemenlistenApp:
         anleitung_fett = "Anleitung:"
         anleitung_rest = (
             "\n\n1. Excel-Datei anpassen (z. B. Teilnehmende, Lernbereiche, E-Mail-Konfiguration).\n"
-            "2. 'Themenlistenhelfer starten' ausführen.\n"
+            "2. 'Themenlisten-Helfer starten' ausführen.\n"
             "\nDie generierten Themenlisten und E-Mail-Entwürfe werden automatisch erstellt."
         )
         textbox = tk.Text(frame_right, width=48, height=10, wrap="word", bg=frame_outer.cget("bg"), relief="flat", borderwidth=0)

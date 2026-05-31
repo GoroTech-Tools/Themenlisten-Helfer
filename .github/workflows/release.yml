@@ -75,8 +75,8 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path release | Out-Null
 
-          $exeName = "Themenlistenhelfer_${env:VERSION}.exe"
-          $zipName = "Themenlistenhelfer_v${env:VERSION}.zip"
+          $exeName = "Themenlisten-Helfer_${env:VERSION}.exe"
+          $zipName = "Themenlisten-Helfer_v${env:VERSION}.zip"
 
           Copy-Item "dist/ThemenlistenHelfer_GUI.exe" "release/$exeName" -Force
 
@@ -88,8 +88,8 @@ jobs:
         with:
           name: release-assets-v${{ steps.set_version.outputs.version }}
           path: |
-            release/Themenlistenhelfer_${{ steps.set_version.outputs.version }}.exe
-            release/Themenlistenhelfer_v${{ steps.set_version.outputs.version }}.zip
+            release/Themenlisten-Helfer_${{ steps.set_version.outputs.version }}.exe
+            release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
 
       - name: Publish GitHub release
         if: startsWith(github.ref, 'refs/tags/')
@@ -99,8 +99,8 @@ jobs:
           name: Themenlisten-Helfer ${{ github.ref_name }}
           generate_release_notes: true
           files: |
-            release/Themenlistenhelfer_${{ steps.set_version.outputs.version }}.exe
-            release/Themenlistenhelfer_v${{ steps.set_version.outputs.version }}.zip
+            release/Themenlisten-Helfer_${{ steps.set_version.outputs.version }}.exe
+            release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
 
       - name: Guardrail - normalize release titles
         if: startsWith(github.ref, 'refs/tags/')

@@ -1,4 +1,4 @@
-# Release-Prozess
+# Dokumentation Releases
 
 ## Build- und Release-Übersicht
 
@@ -38,9 +38,9 @@ flowchart LR
 
 ## Artefakte
 
-- `dist/Themenlistenhelfer_<version>.exe`
-- `release/Themenlistenhelfer_<version>.exe`
-- `release/Themenlistenhelfer_v<version>.zip`
+- `dist/Themenlisten-Helfer_<version>.exe`
+- `release/Themenlisten-Helfer_<version>.exe`
+- `release/Themenlisten-Helfer_v<version>.zip`
 
 ## GitHub-Release-Hinweis
 
@@ -57,7 +57,7 @@ Release Notes sollten enthalten:
 - Funktionsänderungen
 - Breaking Changes
 - Migrationshinweise (falls Pfade/Dateiformate geändert wurden)
-- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `release/Themenlistenhelfer_2.5.2.exe`)
+- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `release/Themenlisten-Helfer_1.0.0.exe`)
 
 ## Release-Workflow testen (Tag-basiert)
 

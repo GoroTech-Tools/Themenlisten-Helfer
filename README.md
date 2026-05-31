@@ -1,4 +1,4 @@
-# Themenlisten-Helfer-Portable
+# Themenlisten-Helfer
 
 Portable Windows-Anwendung zur automatisierten Erstellung von Themenlisten (Word) und E-Mail-Entwürfen (Outlook) auf Basis einer Excel-Datei.
 
@@ -7,7 +7,7 @@ Das Projekt dient als Arbeitserleichterung für die Begleitung der kaufmännisch
 ## Aktueller Stand
 
 - Aktuelle Release-Version: `1.0.0`
-- Empfohlenes Artefakt für Tests und Verteilung: `release/Themenlistenhelfer_1.0.0.exe`
+- Empfohlenes Artefakt für Tests und Verteilung: `release/Themenlisten-Helfer_1.0.0.exe`
 - Word-Vorlagen werden in den Formaten `.docx` und `.dotm` unterstützt.
 - Onefile-Builds laden eingebettete Ressourcen robust aus dem Bundle und verwenden das EXE-Verzeichnis für laufzeitnahe Dateien.
 
@@ -21,7 +21,7 @@ Das Projekt dient als Arbeitserleichterung für die Begleitung der kaufmännisch
 ## Empfohlene Verzeichnisstruktur
 
 ```text
-Themenlisten-Helfer-Portable/
+Themenlisten-Helfer/
 ├── .github/                      # Workflows, Issue-/PR-Templates
 ├── assets/
 │   ├── icons/                    # ICO-Dateien
@@ -29,7 +29,7 @@ Themenlisten-Helfer-Portable/
 ├── data/                         # Eingabedateien und Vorlagen
 │   ├── Auswahl Teilnehmende zu Lernbereichen.xlsx
 │   └── Themenlisten-Vorlagen/
-├── docs/                         # Anwender- & Entwicklerdokumentation
+├── docs/                         # fachliche Dokumentation und Standards
 ├── output/
 │   └── Themenlisten/             # erzeugte Dateien
 ├── release/                      # veröffentlichte EXE/ZIP-Artefakte
@@ -116,9 +116,10 @@ Folgende Altdateien wurden in die neue Struktur verschoben:
 
 Diese `README.md` im Projektwurzelverzeichnis ist die zentrale Einstiegsdokumentation.
 
-- Benutzer: `docs/ANWENDERDOKUMENTATION.md`
-- Entwicklung: `docs/ENTWICKLERDOKUMENTATION.md`
-- Release: `docs/RELEASE_PROZESS.md`
+- Benutzer: `docs/DOKUMENTATION_ANWENDER.md`
+- Entwicklung: `docs/DOKUMENTATION_TECHNIK.md`
+- Release: `docs/DOKUMENTATION_RELEASES.md`
+- Diagramme: `docs/DOKUMENTATION_DIAGRAMME.md`
 - Änderungen: `docs/CHANGELOG.md`
 - Beitrag: `docs/CONTRIBUTING.md`
 - Verhaltenskodex: `docs/CODE_OF_CONDUCT.md`
