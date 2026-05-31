@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Build / Packaging
+build/
+dist/
+*.spec.bak
+*.exe
+*.zip
+*.7z
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Runtime output
+output/Themenlisten/*
+!output/Themenlisten/.gitkeep
+Themenlisten/*
+!Themenlisten/.gitkeep
+
+# Local data copies (optional keep repo clean)
+# data/*.xlsx
+
+# Local release extraction folders (do not version)
+release/Themenlistenhelfer_v*/

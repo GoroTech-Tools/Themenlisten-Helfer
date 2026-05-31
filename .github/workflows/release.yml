@@ -1,0 +1,118 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          if (Test-Path src/requirements.txt) { pip install -r src/requirements.txt }
+          elseif (Test-Path requirements.txt) { pip install -r requirements.txt }
+          pip install pyinstaller
+
+      - name: Derive version
+        id: set_version
+        shell: pwsh
+        run: |
+          if ("${{ github.ref }}".StartsWith("refs/tags/")) {
+            $version = "${{ github.ref_name }}".TrimStart('v')
+          }
+          else {
+            $version = (Get-Content "src/version.txt" -Raw).Trim()
+          }
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Guard tag matches src version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $tagName = "${{ github.ref_name }}"
+          if ($tagName -notmatch '^v\d+\.\d+\.\d+$') {
+            Write-Error "Invalid tag format '$tagName'. Expected semantic version tag format: vMAJOR.MINOR.PATCH (e.g., v2.4.5)."
+            exit 1
+          }
+
+          $tagVersion = "${{ github.ref_name }}".TrimStart('v')
+          $fileVersion = (Get-Content "src/version.txt" -Raw).Trim()
+
+          if ($tagVersion -ne $fileVersion) {
+            Write-Error "Version mismatch: Tag version '$tagVersion' != src/version.txt '$fileVersion'."
+            exit 1
+          }
+
+          Write-Host "Version guard passed: $tagVersion"
+
+      - name: Build executable
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          python -m PyInstaller src/ThemenlistenHelfer_GUI.spec
+
+      - name: Package release assets
+        shell: pwsh
+        env:
+          VERSION: ${{ steps.set_version.outputs.version }}
+        run: |
+          New-Item -ItemType Directory -Force -Path release | Out-Null
+
+          $exeName = "Themenlistenhelfer_${env:VERSION}.exe"
+          $zipName = "Themenlistenhelfer_v${env:VERSION}.zip"
+
+          Copy-Item "dist/ThemenlistenHelfer_GUI.exe" "release/$exeName" -Force
+
+          if (Test-Path "release/$zipName") { Remove-Item "release/$zipName" -Force }
+          Compress-Archive -Path "release/$exeName", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-assets-v${{ steps.set_version.outputs.version }}
+          path: |
+            release/Themenlistenhelfer_${{ steps.set_version.outputs.version }}.exe
+            release/Themenlistenhelfer_v${{ steps.set_version.outputs.version }}.zip
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Themenlisten-Helfer ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            release/Themenlistenhelfer_${{ steps.set_version.outputs.version }}.exe
+            release/Themenlistenhelfer_v${{ steps.set_version.outputs.version }}.zip
+
+      - name: Guardrail - normalize release titles
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $releases = gh release list --limit 100 --json tagName,name | ConvertFrom-Json
+          foreach ($r in $releases) {
+            if ($null -ne $r.name -and $r.name -match '^Release\s+') {
+              $newTitle = "Themenlisten-Helfer $($r.tagName)"
+              Write-Host "Guardrail: '$($r.name)' -> '$newTitle'"
+              gh release edit $r.tagName --title $newTitle | Out-Null
+            }
+          }

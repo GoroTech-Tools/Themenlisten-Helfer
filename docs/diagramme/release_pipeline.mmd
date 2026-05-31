@@ -1,0 +1,7 @@
+flowchart LR
+    A[src version.txt] --> B[Build script build_tlh.bat]
+    B --> C[PyInstaller EXE]
+    C --> D[Release assets EXE ZIP]
+    D --> E[Tag push vX.Y.Z]
+    E --> F[GitHub Workflow release.yml]
+    F --> G[GitHub Release mit Produkttitel]
