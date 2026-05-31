@@ -80,19 +80,17 @@ jobs:
           $notesName = "RELEASE_NOTES_v${env:VERSION}.md"
           $notesPath = "release/$notesName"
 
-          Copy-Item "dist/ThemenlistenHelfer_GUI.exe" "release/$exeName" -Force
-
           if (Test-Path "release/$zipName") { Remove-Item "release/$zipName" -Force }
-          Compress-Archive -Path "release/$exeName", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
+          Compress-Archive -Path "dist/ThemenlistenHelfer_GUI.exe", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
 
-          Set-Content -Path $notesPath -Encoding utf8 -NoNewline -Value "# Release Notes v${env:VERSION}`r`n`r`n## Enthalten`r`n`r`n- Themenlisten-Helfer im Versionsstand ${env:VERSION}.`r`n- Release-Artefakte im Schema Themenlisten-Helfer_<version>.exe und Themenlisten-Helfer_v<version>.zip.`r`n- Dokumentation unter docs/ sowie ergänzende GitHub Release Notes im Release-Eintrag.`r`n`r`n## Artefakte`r`n`r`n- release/$exeName`r`n- release/$zipName`r`n- release/$notesName`r`n`r`n## Hinweise`r`n`r`n- Empfohlenes Testartefakt: release/$exeName`r`n- Vollständiger Commit-Verlauf: https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}`r`n"
+          Set-Content -Path $notesPath -Encoding utf8 -NoNewline -Value "# Release Notes v${env:VERSION}`r`n`r`n## Enthalten`r`n`r`n- Themenlisten-Helfer im Versionsstand ${env:VERSION}.`r`n- Release-Artefakte im Schema `ThemenlistenHelfer_GUI.exe`, `Themenlisten-Helfer_v<version>.zip` und `RELEASE_NOTES_v<version>.md`.`r`n- Dokumentation unter docs/ sowie ergänzende GitHub Release Notes im Release-Eintrag.`r`n`r`n## Artefakte`r`n`r`n- `dist/ThemenlistenHelfer_GUI.exe``r`n- `release/$zipName``r`n- `release/$notesName``r`n`r`n## Hinweise`r`n`r`n- Empfohlenes Testartefakt: `dist/ThemenlistenHelfer_GUI.exe``r`n- Vollständiger Commit-Verlauf: `https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}``r`n"
 
       - name: Upload workflow artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-assets-v${{ steps.set_version.outputs.version }}
           path: |
-            release/Themenlisten-Helfer_${{ steps.set_version.outputs.version }}.exe
+            dist/ThemenlistenHelfer_GUI.exe
             release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
             release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
 
@@ -105,7 +103,7 @@ jobs:
           body_path: release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
           generate_release_notes: false
           files: |
-            release/Themenlisten-Helfer_${{ steps.set_version.outputs.version }}.exe
+            dist/ThemenlistenHelfer_GUI.exe
             release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
             release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
 

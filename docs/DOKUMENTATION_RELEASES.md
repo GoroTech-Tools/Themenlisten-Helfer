@@ -38,10 +38,11 @@ flowchart LR
 
 ## Artefakte
 
-- `dist/Themenlisten-Helfer_<version>.exe`
-- `release/Themenlisten-Helfer_<version>.exe`
+- `dist/ThemenlistenHelfer_GUI.exe`
 - `release/Themenlisten-Helfer_v<version>.zip`
 - `release/RELEASE_NOTES_v<version>.md`
+
+Hinweis: `dist/ThemenlistenHelfer_GUI.exe` ist die rohe PyInstaller-Ausgabe und der technische Ausgangspunkt für den späteren Release-Build. Für GitHub Releases wird sie direkt aus `dist/` verwendet; sie wird nicht mehr nach `release/` kopiert. Der lokale Build-Entrypoint kann zusätzlich eine umbenannte Kopie für lokale Pakete erzeugen.
 
 ## GitHub-Release-Hinweis
 
@@ -60,7 +61,7 @@ Release Notes sollten enthalten:
 - Funktionsänderungen
 - Breaking Changes
 - Migrationshinweise (falls Pfade/Dateiformate geändert wurden)
-- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `release/Themenlisten-Helfer_1.0.0.exe`)
+   - Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `dist/ThemenlistenHelfer_GUI.exe`)
 
 ## Release-Workflow testen (Tag-basiert)
 

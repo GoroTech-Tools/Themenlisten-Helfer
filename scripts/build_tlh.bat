@@ -121,18 +121,18 @@ set NOTESFILE=!RELEASE_DIR!\!NOTESNAME!
 >> "!NOTESFILE!" echo ## Enthalten
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo - Themenlisten-Helfer im Versionsstand `!NEWVERSION!`.
->> "!NOTESFILE!" echo - Release-Artefakte im Schema `Themenlisten-Helfer_^^^<version^>^.exe` und `Themenlisten-Helfer_v^^^<version^>^.zip`.
+>> "!NOTESFILE!" echo - Release-Artefakte im Schema `dist\ThemenlistenHelfer_GUI.exe`, `Themenlisten-Helfer_v^^^<version^>^.zip` und `RELEASE_NOTES_v^^^<version^>^.md`.
 >> "!NOTESFILE!" echo - Dokumentation unter `docs/` sowie ergaenzende GitHub Release Notes im Release-Eintrag.
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo ## Artefakte
 >> "!NOTESFILE!" echo.
->> "!NOTESFILE!" echo - `release/!EXENAME!`
+>> "!NOTESFILE!" echo - `dist\ThemenlistenHelfer_GUI.exe`
 >> "!NOTESFILE!" echo - `release/!ZIPNAME!`
 >> "!NOTESFILE!" echo - `release/!NOTESNAME!`
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo ## Hinweise
 >> "!NOTESFILE!" echo.
->> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `release/!EXENAME!`
+>> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `dist\ThemenlistenHelfer_GUI.exe`
 >> "!NOTESFILE!" echo - Vollstaendiger Commit-Verlauf: `https://github.com/TomGorontzy/Themenlisten-Helfer/commits/v!NEWVERSION!`
 
 echo Release Notes erstellt: !NOTESFILE!
@@ -146,14 +146,7 @@ popd
 REM Bereits vorhandene EXEs im Release-Verzeichnis löschen
 for %%f in ("!RELEASE_DIR!\Themenlisten-Helfer_*.exe") do del "%%~f"
 
-REM Neueste EXE aus dist ins Release-Verzeichnis kopieren
-for /f "delims=" %%f in ('dir /b /o-d dist\Themenlisten-Helfer_*.exe') do (
-    copy "dist\%%f" "!RELEASE_DIR!\"
-    goto :copiedexe
-)
-:copiedexe
-
-echo Build abgeschlossen: dist\!EXENAME! und !RELEASE_DIR!\!EXENAME!
+echo Build abgeschlossen: dist\!EXENAME! und !RELEASE_DIR!\!ZIPNAME! (+ Release Notes)
 if /I "!NO_PAUSE!"=="1" goto :eof
 if defined CI goto :eof
 pause

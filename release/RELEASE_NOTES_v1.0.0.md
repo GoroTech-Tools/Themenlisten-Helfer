@@ -3,16 +3,16 @@
 ## Enthalten
 
 - Themenlisten-Helfer im Versionsstand 1.0.0.
-- Release-Artefakte im Schema Themenlisten-Helfer_<version>.exe und Themenlisten-Helfer_v<version>.zip.
+- Release-Artefakte im Schema dist/ThemenlistenHelfer_GUI.exe, Themenlisten-Helfer_v<version>.zip und RELEASE_NOTES_v<version>.md.
 - Dokumentation unter `docs/` sowie ergänzende GitHub Release Notes im Release-Eintrag.
 
 ## Artefakte
 
-- `release/Themenlisten-Helfer_1.0.0.exe`
+- `dist/ThemenlistenHelfer_GUI.exe`
 - `release/Themenlisten-Helfer_v1.0.0.zip`
 - `release/RELEASE_NOTES_v1.0.0.md`
 
 ## Hinweise
 
-- Empfohlenes Testartefakt: `release/Themenlisten-Helfer_1.0.0.exe`
+- Empfohlenes Testartefakt: `dist/ThemenlistenHelfer_GUI.exe`
 - Vollständiger Commit-Verlauf: `https://github.com/TomGorontzy/Themenlisten-Helfer/commits/v1.0.0`
