@@ -32,6 +32,8 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 - Neue Release-QA-Dokumente: `docs/RELEASE_QA_CHECKLISTE.md` und `docs/RELEASE_SMOKETEST_PROTOKOLL.md`.
 - Release-Notes-Entwurf für die Zielversion `1.0.1`: `release/RELEASE_NOTES_v1.0.1.md`.
 - Neuer, verbindlicher Ablauf in fester Reihenfolge: `docs/RELEASE_PROZESS.md`.
+- E-Mail-Zusatzanhänge aus Excel-Konfiguration: optionale Spalten `Anhang1` bis `Anhang5` im Blatt `E-Mail-Konfiguration`.
+- Zusatzanhang-Suche im Lernbereichspfad `data/Zusatzmaterialien/<<lernbereich>>` inkl. Unterordner.
 
 ## [1.0.0] - 2026-05-25
 

@@ -1,3 +1,4 @@
+import os
 from typing import Any
 
 from core_utils import ersetze_umlaute
@@ -16,25 +17,80 @@ def ermittle_empfaengeradresse(vorname: str, nachname: str, domain: str = 'ab.bf
 
 
 def ersetze_mail_platzhalter(subject_template: str, body_template: str, row: Any) -> tuple[str, str]:
-    subject = str(subject_template)
-    body = str(body_template)
-    for key, value in {
+    platzhalter = {
         '<<vorname>>': row['Vorname'],
         '<<nachname>>': row['Nachname'],
         '<<anrede>>': row['Anrede'],
         '<<zeitraum>>': row['Zeitraum'],
         '<<kurs>>': row['Kurs'],
         '<<lernbereich>>': row['Lernbereich'],
-    }.items():
+    }
+    subject = str(subject_template)
+    body = str(body_template)
+    for key, value in platzhalter.items():
         subject = subject.replace(key, str(value))
         body = body.replace(key, str(value))
     return subject, body
 
 
-def erstelle_outlook_entwurf(outlook: Any, empfaenger: str, subject: str, body: str, anhang: str) -> None:
+def resolve_zusatzanhaenge(anhang_templates: list[str], app_dir: str, lernbereich: str, row: Any) -> tuple[list[str], list[str]]:
+    resolved: list[str] = []
+    missing: list[str] = []
+    bereits: set[str] = set()
+    basisordner = os.path.join(app_dir, 'data', 'Zusatzmaterialien', lernbereich)
+
+    for template in anhang_templates[:5]:
+        kandidat = str(template).strip()
+        if not kandidat:
+            continue
+
+        _, kandidat = ersetze_mail_platzhalter(kandidat, kandidat, row)
+        kandidat = kandidat.strip()
+        pfad: str | None = None
+
+        if os.path.isabs(kandidat) and os.path.isfile(kandidat):
+            pfad = kandidat
+        else:
+            pruefpfade = [
+                os.path.join(app_dir, kandidat),
+                os.path.join(app_dir, 'data', kandidat),
+                os.path.join(basisordner, kandidat),
+            ]
+            for p in pruefpfade:
+                if os.path.isfile(p):
+                    pfad = p
+                    break
+
+            if pfad is None and os.path.isdir(basisordner):
+                suchname = os.path.basename(kandidat).lower()
+                treffer: list[str] = []
+                for root, _, files in os.walk(basisordner):
+                    for datei in files:
+                        if datei.lower() == suchname:
+                            treffer.append(os.path.join(root, datei))
+                if treffer:
+                    pfad = sorted(treffer)[0]
+
+        if pfad is None:
+            missing.append(kandidat)
+            continue
+
+        key = os.path.normcase(os.path.abspath(pfad))
+        if key not in bereits:
+            bereits.add(key)
+            resolved.append(pfad)
+
+    return resolved, missing
+
+
+def erstelle_outlook_entwurf(outlook: Any, empfaenger: str, subject: str, body: str, anhaenge: str | list[str]) -> None:
     mail = outlook.CreateItem(0)
     mail.To = empfaenger
     mail.Subject = subject
     mail.Body = body
-    mail.Attachments.Add(anhang)
+    if isinstance(anhaenge, str):
+        mail.Attachments.Add(anhaenge)
+    else:
+        for anhang in anhaenge:
+            mail.Attachments.Add(anhang)
     mail.Display()

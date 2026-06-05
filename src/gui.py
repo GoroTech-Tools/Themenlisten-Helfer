@@ -40,7 +40,7 @@ import threading
 import pythoncom
 from core_utils import finde_vorlagen
 from io_excel import lade_verarbeitbare_teilnehmende, lade_mailkonfiguration, finde_mailkonfiguration
-from outlook_mailer import ermittle_empfaengeradresse, ersetze_mail_platzhalter, erstelle_outlook_entwurf
+from outlook_mailer import ermittle_empfaengeradresse, ersetze_mail_platzhalter, resolve_zusatzanhaenge, erstelle_outlook_entwurf
 from docx_renderer import erstelle_dateiname, baue_ersetzungen, render_vorlage
 from cleanup import loesche_alte_dateien
 
@@ -168,9 +168,19 @@ def erstelle_emails(excel_path: str, status_callback: StatusCallback) -> EmailRe
             status_callback(f"[WARNUNG] Keine E-Mail-Konfiguration für Vorlage {template_bez}")
             result['missing_mail_config'] += 1
             continue
-        subject_template, body_template = config
+        subject_template, body_template, anhang_templates = config
         subject, body = ersetze_mail_platzhalter(subject_template, body_template, row)
-        erstelle_outlook_entwurf(outlook, empfaenger, subject, body, anhang)
+        zusatzanhaenge, fehlende_zusatzanhaenge = resolve_zusatzanhaenge(
+            anhang_templates,
+            app_dir,
+            lernbereich,
+            row
+        )
+        for fehlend in fehlende_zusatzanhaenge:
+            status_callback(f"[WARNUNG] Zusatzanhang nicht gefunden: {fehlend} (Lernbereich: {lernbereich})")
+            result['missing_attachments'] += 1
+        alle_anhaenge = [anhang, *zusatzanhaenge]
+        erstelle_outlook_entwurf(outlook, empfaenger, subject, body, alle_anhaenge)
         result['drafts'] += 1
         status_callback(f"E-Mail-Entwurf für {empfaenger} angezeigt.")
     status_callback(f"FERTIG: E-Mail-Entwürfe erstellt ({result['drafts']} von {result['selected']}).")

@@ -54,7 +54,7 @@ Erwartete Spalten:
 
 Hinweis: Bei `Verarbeiten` wird Groß-/Kleinschreibung ignoriert; führende oder nachgestellte Leerzeichen werden automatisch bereinigt.
 
-Zusätzlich wird das Blatt `E-Mail-Konfiguration` genutzt (`TemplateBezeichnung`, `Subject`, `BodyText`).
+Zusätzlich wird das Blatt `E-Mail-Konfiguration` genutzt (`TemplateBezeichnung`, `Subject`, `BodyText`, optional `Anhang1` bis `Anhang5`).
 
 Das Tabellenblatt `Vorbereitung` dient als internes Hilfsmittel und sollte nicht manipuliert oder gelöscht werden.
 
@@ -82,6 +82,10 @@ Das Tabellenblatt `Hilfstabellen` dient ebenfalls als Hilfsmittel und sollte nic
 - E-Mail-Betreff und E-Mail-Nachricht werden ausschließlich in der Datei `Auswahl Teilnehmende zu Lernbereichen.xlsx` im Tabellenblatt `E-Mail-Konfiguration` angepasst.
 - Platzhalter in diesem Tabellenblatt dürfen nicht verändert oder gelöscht werden.
 - `\n` steht dabei für einen Zeilenumbruch in der E-Mail-Nachricht.
+- Für zusätzliche Anhänge können optional die Spalten `Anhang1` bis `Anhang5` verwendet werden.
+- Zusatzanhänge werden primär im Ordner `data/Zusatzmaterialien/<<lernbereich>>` gesucht (inkl. Unterordner).
+- In den Anhang-Spalten sind Dateinamen, relative Pfade oder absolute Pfade möglich.
+- Platzhalter wie `<<vorname>>`, `<<nachname>>`, `<<lernbereich>>` sind auch in den Anhang-Spalten möglich.
 
 ## Fehlerbehebung
 
