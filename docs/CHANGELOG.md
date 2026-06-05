@@ -4,7 +4,34 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 
 ## [Unreleased]
 
-_Keine Änderungen._
+### Fixed (Unreleased)
+
+- Robustere Filterung der zu verarbeitenden Datensätze: `Verarbeiten` wird jetzt fehlertolerant (`NaN`-sicher, trim + lowercase) ausgewertet.
+- Outlook-Initialisierung in der E-Mail-Erstellung mit expliziter Fehlerbehandlung abgesichert; bei COM-Startfehlern erfolgt kontrollierter Abbruch mit Statusmeldung.
+- COM-Lifecycle im Batch-Ablauf verbessert: `pythoncom.CoUninitialize()` wird im `finally`-Block ausgeführt.
+
+### Changed (Unreleased)
+
+- Kleine Codebereinigung in `src/ThemenlistenHelfer_GUI.py` (entfernte ungenutzte Imports, doppelte Dateinamenzuweisung entfernt).
+- Erste Modularisierung umgesetzt: pure Hilfsfunktionen in neues Modul `src/core_utils.py` ausgelagert.
+- Weitere Modularisierung umgesetzt: Excel-spezifische Logik nach `src/io_excel.py` und Mail-Hilfslogik nach `src/outlook_mailer.py` verschoben.
+- `src/ThemenlistenHelfer_GUI.py` orchestriert nun stärker und enthält weniger Fachlogik.
+- Word-Rendering wurde nach `src/docx_renderer.py` verschoben; Dateiname, Platzhalterdaten und Render-Pipeline sind dort gekapselt.
+- Bereinigungslogik wurde nach `src/cleanup.py` verschoben; GUI nutzt zentrale Löschfunktion.
+- Finale GUI-Struktur umgesetzt: Haupt-GUI und Ablaufsteuerung liegen jetzt in `src/gui.py`.
+- `src/ThemenlistenHelfer_GUI.py` bleibt als schlanker Kompatibilitäts-Entrypoint erhalten und delegiert an `gui.main()`.
+- Typisierung in `src/gui.py` nachgeschärft (typed callbacks, result-`TypedDict`s, präzisere Signaturen).
+- Technik-Systemdiagramm auf modulare Architektur (`gui.py`, `io_excel.py`, `docx_renderer.py`, `outlook_mailer.py`, `cleanup.py`, `core_utils.py`) aktualisiert.
+- Release-Dokumentation an Schwesterprojekt-Standard angeglichen (QA-Checkliste und Smoketest-Protokoll als Pflichtreferenzen im Release-Prozess).
+
+### Added (Unreleased)
+
+- Unit-Tests für Kernlogik unter `tests/test_core_utils.py` ergänzt (Umlautersetzung, Vorlagenfindung, Filterung `Verarbeiten`).
+- Zusätzliche Unit-Tests unter `tests/test_io_excel.py` und `tests/test_outlook_mailer.py` ergänzt.
+- Weitere Unit-Tests unter `tests/test_docx_renderer.py` und `tests/test_cleanup.py` ergänzt.
+- Neue Release-QA-Dokumente: `docs/RELEASE_QA_CHECKLISTE.md` und `docs/RELEASE_SMOKETEST_PROTOKOLL.md`.
+- Release-Notes-Entwurf für die Zielversion `1.0.1`: `release/RELEASE_NOTES_v1.0.1.md`.
+- Neuer, verbindlicher Ablauf in fester Reihenfolge: `docs/RELEASE_PROZESS.md`.
 
 ## [1.0.0] - 2026-05-25
 

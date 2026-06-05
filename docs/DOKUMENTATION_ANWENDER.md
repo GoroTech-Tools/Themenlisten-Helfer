@@ -52,6 +52,8 @@ Erwartete Spalten:
 - `Lernbereich`
 - `Verarbeiten` (`ja`/`nein`)
 
+Hinweis: Bei `Verarbeiten` wird Groß-/Kleinschreibung ignoriert; führende oder nachgestellte Leerzeichen werden automatisch bereinigt.
+
 Zusätzlich wird das Blatt `E-Mail-Konfiguration` genutzt (`TemplateBezeichnung`, `Subject`, `BodyText`).
 
 Das Tabellenblatt `Vorbereitung` dient als internes Hilfsmittel und sollte nicht manipuliert oder gelöscht werden.

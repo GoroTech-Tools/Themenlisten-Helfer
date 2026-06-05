@@ -1,7 +1,11 @@
 flowchart LR
-    A[GUI ThemenlistenHelfer_GUI.py] --> B[erstelle_themenlisten]
-    A --> C[erstelle_emails]
-    A --> D[loesche_alte_themenlisten]
-    B --> E[Word Vorlagen]
-    C --> F[Outlook COM]
-    D --> G[Ausgabeordner]
+    A[GUI src/gui.py] --> B[io_excel.py]
+    A --> C[docx_renderer.py]
+    A --> D[outlook_mailer.py]
+    A --> E[cleanup.py]
+    A --> F[core_utils.py]
+
+    B --> G[Excel Teilnehmende + E-Mail-Konfiguration]
+    C --> H[Word Vorlagen .docx/.dotm]
+    D --> I[Outlook COM]
+    E --> J[Ausgabeordner Themenlisten]

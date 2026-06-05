@@ -4,23 +4,38 @@
 
 ```mermaid
 flowchart LR
-    A[GUI ThemenlistenHelfer_GUI.py] --> B[erstelle_themenlisten]
-    A --> C[erstelle_emails]
-    A --> D[loesche_alte_themenlisten]
-    B --> E[Word Vorlagen]
-    C --> F[Outlook COM]
-    D --> G[Ausgabeordner]
+    A[GUI src/gui.py] --> B[io_excel.py]
+    A --> C[docx_renderer.py]
+    A --> D[outlook_mailer.py]
+    A --> E[cleanup.py]
+    A --> F[core_utils.py]
+
+    B --> G[Excel Teilnehmende + E-Mail-Konfiguration]
+    C --> H[Word Vorlagen .docx/.dotm]
+    D --> I[Outlook COM]
+    E --> J[Ausgabeordner Themenlisten]
 ```
 
 ![Systemüberblick Dokumentation Technik](diagramme/technik_systemuebersicht.svg)
 
 ## Architektur (aktuell)
 
-Monolithische Desktop-Anwendung in `src/ThemenlistenHelfer_GUI.py` mit drei Kernprozessen:
+Desktop-Anwendung mit GUI-Orchestrierung in `src/ThemenlistenHelfer_GUI.py` und ausgelagerten Hilfsmodulen.
+
+Kernprozesse (weiterhin GUI-getrieben):
 
 1. `erstelle_themenlisten(...)`
 2. `erstelle_emails(...)`
 3. `loesche_alte_themenlisten(...)`
+
+Ausgelagerte Module (Stand jetzt):
+
+- `src/core_utils.py` (allgemeine Hilfsfunktionen)
+- `src/io_excel.py` (Excel-Lese- und Konfigurationslogik)
+- `src/outlook_mailer.py` (Adress- und Mail-Text-Hilfslogik, Entwurferstellung)
+- `src/docx_renderer.py` (Word-Rendering inkl. Platzhalterersetzung)
+- `src/cleanup.py` (Bereinigung alter Ausgabedateien)
+- `src/gui.py` (GUI-Klasse, Ablaufsteuerung und Anwendungseinstieg)
 
 Die GUI startet den Ablauf asynchron über einen Thread.
 
@@ -81,11 +96,12 @@ flowchart TD
 
 Empfohlene Aufteilung in nächsten Schritten:
 
-- `src/io_excel.py`
-- `src/docx_renderer.py`
-- `src/outlook_mailer.py`
-- `src/cleanup.py`
-- `src/gui.py`
+- **Bereits umgesetzt:** `src/core_utils.py` für pure Hilfsfunktionen (`ersetze_umlaute`, `finde_vorlagen`, `filter_verarbeitbare_teilnehmende`).
+- **Bereits umgesetzt:** `src/io_excel.py` und `src/outlook_mailer.py`.
+- **Bereits umgesetzt:** `src/docx_renderer.py` und `src/cleanup.py`.
+- **Bereits umgesetzt:** `src/gui.py` als zentraler UI-Einstieg; `src/ThemenlistenHelfer_GUI.py` fungiert als Kompatibilitäts-Launcher.
+- Begleitende Unit-Tests: `tests/test_core_utils.py`, `tests/test_io_excel.py`, `tests/test_outlook_mailer.py`, `tests/test_docx_renderer.py`, `tests/test_cleanup.py`.
+
 
 ## Qualitätsrichtlinien
 

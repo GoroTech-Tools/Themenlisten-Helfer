@@ -2,6 +2,8 @@
 
 ## Build- und Release-Übersicht
 
+Detailablauf in fester Reihenfolge: `docs/RELEASE_PROZESS.md`.
+
 ```mermaid
 flowchart LR
    A[src version.txt] --> B[Build script build_tlh.bat]
@@ -31,10 +33,16 @@ flowchart LR
 4. ZIP/EXE kurz validieren.
 5. Tag/Release in GitHub erstellen.
 
+Erweiterter QA-Standard (wie in Schwesterprojekten):
+
+- Vor Freigabe zusätzlich `docs/RELEASE_QA_CHECKLISTE.md` vollständig durchlaufen.
+- Ergebnisse im `docs/RELEASE_SMOKETEST_PROTOKOLL.md` protokollieren.
+
 ## Aktueller Release-Stand
 
-- Zuletzt gebaut und dokumentiert: `1.0.0`
-- Wichtige Inhalte dieses Releases: Python-Abhängigkeiten auf `src/requirements.txt` standardisiert, neue `src`-Entrypoints (`src/build.ps1`, `src/setup.ps1`) sowie Root-Kompatibilitäts-Entrypoints (`build.ps1`, `setup.ps1`).
+- Zuletzt gebaut und veröffentlicht: `1.0.0`
+- In Vorbereitung (Release-Prep): `1.0.1`
+- Wichtige Inhalte der Vorbereitung `1.0.1`: modulare Code-Struktur, erweiterte Testabdeckung und Release-QA-Ablauf analog Schwesterprojekten.
 
 ## Artefakte
 
@@ -88,3 +96,12 @@ Release Notes sollten enthalten:
 ## Praktischer Hinweis für das aktuelle Release
 
 Wenn `src/version.txt` bereits auf der gewünschten Version (z. B. `1.0.0`) steht, muss für die GitHub-Veröffentlichung derselbe Commit mit dem passenden Tag (z. B. `v1.0.0`) versehen und gepusht werden. Andernfalls schlägt der Release-Workflow absichtlich fehl.
+
+## Zielbild Release-Vorbereitung
+
+Für einen konsistenten Release-Prep sollten vor Tag-Erstellung folgende Artefakte bereitstehen:
+
+- `docs/CHANGELOG.md` mit aktuellem Stand
+- `release/RELEASE_NOTES_v<version>.md` als Release-Body-Basis
+- `docs/RELEASE_QA_CHECKLISTE.md` (durchgeführt)
+- `docs/RELEASE_SMOKETEST_PROTOKOLL.md` (ausgefüllt)

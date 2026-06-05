@@ -26,6 +26,8 @@ Dieses Verzeichnis enthält die ausgelagerten Mermaid-Quellen der Dokumentation.
 - `docs/diagramme/technik_systemuebersicht.mmd`
 - `docs/diagramme/technik_datenfluss.mmd`
 
+Die `technik_systemuebersicht.mmd` zeigt den aktuellen modularen Zuschnitt mit `src/gui.py` als Orchestrator und den ausgelagerten Fachmodulen.
+
 #### Dokumentation Releases
 
 - `docs/diagramme/release_pipeline.mmd`
