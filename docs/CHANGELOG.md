@@ -23,6 +23,7 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 - Typisierung in `src/gui.py` nachgeschärft (typed callbacks, result-`TypedDict`s, präzisere Signaturen).
 - Technik-Systemdiagramm auf modulare Architektur (`gui.py`, `io_excel.py`, `docx_renderer.py`, `outlook_mailer.py`, `cleanup.py`, `core_utils.py`) aktualisiert.
 - Release-Dokumentation an Schwesterprojekt-Standard angeglichen (QA-Checkliste und Smoketest-Protokoll als Pflichtreferenzen im Release-Prozess).
+- E-Mail-Body ergänzt bei vorhandenen Zusatzanhängen automatisch einen PS-Hinweis auf weitere Anlagen.
 
 ### Added (Unreleased)
 

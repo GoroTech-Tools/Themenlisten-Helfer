@@ -2,7 +2,7 @@
 
 ## Metadaten
 
-- Version: `1.0.1`
+- Version: `1.0.2`
 - Datum: `2026-06-05`
 - Tester/in: GitHub Copilot (Assistenz, CI-/Release-Verifikation)
 - Testumgebung (Windows/Office-Version): GitHub Actions `windows-latest` (lokale Office-Validierung ausstehend)
@@ -11,7 +11,7 @@
 ## 1) Automatisierte Kernprüfung
 
 - Tests ausgeführt: Ja
-- Ergebnis: `14/14` Tests grün (`python -m unittest discover -s tests -p "test_*.py"`)
+- Ergebnis: `16/16` Tests grün (`python -m unittest discover -s tests -p "test_*.py"`)
 - Auffälligkeiten: keine
 
 ## 2) Smoke-Test Ergebnisse
@@ -25,12 +25,12 @@
 
 Details / Abweichungen:
 
-- CI-Release-Workflow erfolgreich: `https://github.com/TomGorontzy/Themenlisten-Helfer/actions/runs/27027207899`
-- GitHub-Release veröffentlicht: `https://github.com/TomGorontzy/Themenlisten-Helfer/releases/tag/v1.0.1`
+- CI-Release-Workflow erfolgreich: `https://github.com/TomGorontzy/Themenlisten-Helfer/actions/runs/27027872920`
+- GitHub-Release veröffentlicht: `https://github.com/TomGorontzy/Themenlisten-Helfer/releases/tag/v1.0.2`
 
 ## 3) Post-Release-Verifikation
 
-- ZIP vorhanden: Ja (`Themenlisten-Helfer_v1.0.1.zip`, 49.009.219 Bytes)
+- ZIP vorhanden: Ja (`Themenlisten-Helfer_v1.0.2.zip`, 49.009.239 Bytes)
 - ZIP entpackbar: N/A (lokale Verifikation ausstehend)
 - Pflichtinhalte vollständig: N/A (lokale Verifikation ausstehend)
 - EXE-Starttest erfolgreich: N/A (lokale Verifikation ausstehend)
@@ -44,4 +44,4 @@ Details / Abweichungen:
 ## 5) Freigabe
 
 - Freigabe erteilt: Ja (technische CI-/Release-Freigabe)
-- Begründung: Workflow `Release` erfolgreich, Release `v1.0.1` veröffentlicht, Pflichtassets vorhanden (`RELEASE_NOTES_v1.0.1.md`, `Themenlisten-Helfer_v1.0.1.zip`, `ThemenlistenHelfer_GUI.exe`). Fachlicher lokaler Smoke-Test wird nachgezogen.
+- Begründung: Workflow `Release` erfolgreich, Release `v1.0.2` veröffentlicht, Pflichtassets vorhanden (`RELEASE_NOTES_v1.0.2.md`, `Themenlisten-Helfer_v1.0.2.zip`, `ThemenlistenHelfer_GUI.exe`). Fachlicher lokaler Smoke-Test wird nachgezogen.

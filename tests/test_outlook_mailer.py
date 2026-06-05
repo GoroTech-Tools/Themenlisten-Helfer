@@ -10,7 +10,14 @@ SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
 
-from outlook_mailer import ermittle_empfaengeradresse, ersetze_mail_platzhalter, resolve_zusatzanhaenge, erstelle_outlook_entwurf
+from outlook_mailer import (
+    ermittle_empfaengeradresse,
+    ersetze_mail_platzhalter,
+    resolve_zusatzanhaenge,
+    ergaenze_bodytext_fuer_zusatzanhaenge,
+    erstelle_outlook_entwurf,
+    ZUSATZANHANG_HINWEIS,
+)
 
 
 class TestOutlookMailer(unittest.TestCase):
@@ -97,6 +104,21 @@ class TestOutlookMailer(unittest.TestCase):
         erstelle_outlook_entwurf(outlook, 'a@b.c', 'S', 'B', ['a.txt', 'b.txt'])
         self.assertEqual(outlook.mail.Attachments.paths, ['a.txt', 'b.txt'])
         self.assertTrue(outlook.mail.displayed)
+
+    def test_ergaenze_bodytext_fuer_zusatzanhaenge(self):
+        body = ergaenze_bodytext_fuer_zusatzanhaenge('Hallo zusammen', True)
+        self.assertIn(ZUSATZANHANG_HINWEIS, body)
+        self.assertTrue(body.startswith('Hallo zusammen'))
+
+    def test_ergaenze_bodytext_fuer_zusatzanhaenge_keine_dopplung(self):
+        body = f"Hallo\n\n{ZUSATZANHANG_HINWEIS}"
+        result = ergaenze_bodytext_fuer_zusatzanhaenge(body, True)
+        self.assertEqual(result, body)
+
+    def test_ergaenze_bodytext_fuer_zusatzanhaenge_ohne_extra(self):
+        body = 'Hallo zusammen'
+        result = ergaenze_bodytext_fuer_zusatzanhaenge(body, False)
+        self.assertEqual(result, body)
 
 
 if __name__ == '__main__':

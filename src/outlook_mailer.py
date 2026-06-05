@@ -4,6 +4,9 @@ from typing import Any
 from core_utils import ersetze_umlaute
 
 
+ZUSATZANHANG_HINWEIS = "PS: Bitte sehen Sie sich auch die anderen Anlagen von dieser Nachricht an."
+
+
 def ermittle_empfaengeradresse(vorname: str, nachname: str, domain: str = 'ab.bfw.local', max_laenge: int = 20) -> str:
     vornamen_roh = str(vorname).lower()
     nachname_norm = ersetze_umlaute(str(nachname).lower())
@@ -81,6 +84,17 @@ def resolve_zusatzanhaenge(anhang_templates: list[str], app_dir: str, lernbereic
             resolved.append(pfad)
 
     return resolved, missing
+
+
+def ergaenze_bodytext_fuer_zusatzanhaenge(body: str, hat_zusatzanhaenge: bool) -> str:
+    if not hat_zusatzanhaenge:
+        return body
+    if ZUSATZANHANG_HINWEIS in body:
+        return body
+    body = body.rstrip()
+    if body:
+        return f"{body}\n\n{ZUSATZANHANG_HINWEIS}"
+    return ZUSATZANHANG_HINWEIS
 
 
 def erstelle_outlook_entwurf(outlook: Any, empfaenger: str, subject: str, body: str, anhaenge: str | list[str]) -> None:

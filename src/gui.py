@@ -40,7 +40,13 @@ import threading
 import pythoncom
 from core_utils import finde_vorlagen
 from io_excel import lade_verarbeitbare_teilnehmende, lade_mailkonfiguration, finde_mailkonfiguration
-from outlook_mailer import ermittle_empfaengeradresse, ersetze_mail_platzhalter, resolve_zusatzanhaenge, erstelle_outlook_entwurf
+from outlook_mailer import (
+    ermittle_empfaengeradresse,
+    ersetze_mail_platzhalter,
+    resolve_zusatzanhaenge,
+    ergaenze_bodytext_fuer_zusatzanhaenge,
+    erstelle_outlook_entwurf,
+)
 from docx_renderer import erstelle_dateiname, baue_ersetzungen, render_vorlage
 from cleanup import loesche_alte_dateien
 
@@ -176,6 +182,7 @@ def erstelle_emails(excel_path: str, status_callback: StatusCallback) -> EmailRe
             lernbereich,
             row
         )
+        body = ergaenze_bodytext_fuer_zusatzanhaenge(body, bool(zusatzanhaenge))
         for fehlend in fehlende_zusatzanhaenge:
             status_callback(f"[WARNUNG] Zusatzanhang nicht gefunden: {fehlend} (Lernbereich: {lernbereich})")
             result['missing_attachments'] += 1

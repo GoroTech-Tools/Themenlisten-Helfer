@@ -86,6 +86,7 @@ Das Tabellenblatt `Hilfstabellen` dient ebenfalls als Hilfsmittel und sollte nic
 - Zusatzanhänge werden primär im Ordner `data/Zusatzmaterialien/<<lernbereich>>` gesucht (inkl. Unterordner).
 - In den Anhang-Spalten sind Dateinamen, relative Pfade oder absolute Pfade möglich.
 - Platzhalter wie `<<vorname>>`, `<<nachname>>`, `<<lernbereich>>` sind auch in den Anhang-Spalten möglich.
+- Wenn Zusatzanhänge tatsächlich mitgesendet werden, ergänzt die Anwendung den E-Mail-Body automatisch um: `PS: Bitte sehen Sie sich auch die anderen Anlagen von dieser Nachricht an.`
 
 ## Fehlerbehebung
 
