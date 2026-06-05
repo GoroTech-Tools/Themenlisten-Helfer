@@ -83,7 +83,27 @@ jobs:
           if (Test-Path "release/$zipName") { Remove-Item "release/$zipName" -Force }
           Compress-Archive -Path "dist/ThemenlistenHelfer_GUI.exe", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
 
-          Set-Content -Path $notesPath -Encoding utf8 -NoNewline -Value "# Release Notes v${env:VERSION}`r`n`r`n## Enthalten`r`n`r`n- Themenlisten-Helfer im Versionsstand ${env:VERSION}.`r`n- Release-Artefakte im Schema `ThemenlistenHelfer_GUI.exe`, `Themenlisten-Helfer_v<version>.zip` und `RELEASE_NOTES_v<version>.md`.`r`n- Dokumentation unter docs/ sowie ergänzende GitHub Release Notes im Release-Eintrag.`r`n`r`n## Artefakte`r`n`r`n- `dist/ThemenlistenHelfer_GUI.exe``r`n- `release/$zipName``r`n- `release/$notesName``r`n`r`n## Hinweise`r`n`r`n- Empfohlenes Testartefakt: `dist/ThemenlistenHelfer_GUI.exe``r`n- Vollständiger Commit-Verlauf: `https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}``r`n"
+          $notesLines = @(
+            "# Release Notes v${env:VERSION}",
+            "",
+            "## Enthalten",
+            "",
+            "- Themenlisten-Helfer im Versionsstand ${env:VERSION}.",
+            "- Release-Artefakte im Schema ``ThemenlistenHelfer_GUI.exe``, ``Themenlisten-Helfer_v<version>.zip`` und ``RELEASE_NOTES_v<version>.md``.",
+            "- Dokumentation unter ``docs/`` sowie ergänzende GitHub Release Notes im Release-Eintrag.",
+            "",
+            "## Artefakte",
+            "",
+            "- ``dist/ThemenlistenHelfer_GUI.exe``",
+            "- ``release/$zipName``",
+            "- ``release/$notesName``",
+            "",
+            "## Hinweise",
+            "",
+            "- Empfohlenes Testartefakt: ``dist/ThemenlistenHelfer_GUI.exe``",
+            "- Vollständiger Commit-Verlauf: ``https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}``"
+          )
+          Set-Content -Path $notesPath -Encoding utf8 -Value ($notesLines -join "`n")
 
       - name: Upload workflow artifacts
         uses: actions/upload-artifact@v4

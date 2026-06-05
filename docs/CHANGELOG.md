@@ -9,6 +9,7 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 - Robustere Filterung der zu verarbeitenden Datensätze: `Verarbeiten` wird jetzt fehlertolerant (`NaN`-sicher, trim + lowercase) ausgewertet.
 - Outlook-Initialisierung in der E-Mail-Erstellung mit expliziter Fehlerbehandlung abgesichert; bei COM-Startfehlern erfolgt kontrollierter Abbruch mit Statusmeldung.
 - COM-Lifecycle im Batch-Ablauf verbessert: `pythoncom.CoUninitialize()` wird im `finally`-Block ausgeführt.
+- GitHub-Release-Notes-Generierung im Workflow korrigiert (keine fehlerhaften `` `r ``-Artefakte mehr im Markdown-Body).
 
 ### Changed (Unreleased)
 
