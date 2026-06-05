@@ -14,7 +14,7 @@ Verbindlicher, reproduzierbarer Ablauf f√ºr Build, Tagging und GitHub-Release ‚Ä
 ## Empfohlener Standardablauf (Tag-gesteuerter GitHub-Release)
 
 1. **Version festlegen**
-   - `src/version.txt` auf Zielversion setzen (z. B. `1.0.1`).
+   - `src/version.txt` auf Zielversion setzen (z. B. `X.Y.Z`).
 
 2. **Doku und Notes vorbereiten**
    - `docs/CHANGELOG.md` aktualisieren.

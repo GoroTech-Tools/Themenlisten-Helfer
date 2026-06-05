@@ -4,10 +4,18 @@ Portable Windows-Anwendung zur automatisierten Erstellung von Themenlisten (Word
 
 Das Projekt dient als Arbeitserleichterung für die Begleitung der kaufmännischen Qualifizierung von Personen im BFW Weser-Ems.
 
+## Projektstatus
+
+- Status: **Fertig / abgeschlossen**
+- Das Projekt wird im Wartungsmodus geführt.
+- Änderungswünsche und Erweiterungen bitte ausschließlich über GitHub formulieren:
+   - Fehler: GitHub Issue „Bug Report"
+   - Verbesserungen: GitHub Issue „Feature Request"
+
 ## Aktueller Stand
 
-- Aktuelle Release-Version: `1.0.0`
-- Empfohlenes Artefakt für Tests und Verteilung: `release/Themenlisten-Helfer_1.0.0.exe`
+- Aktuelle Release-Version: siehe `src/version.txt` und GitHub Releases.
+- Empfohlenes Artefakt für Tests und Verteilung: aktuelle Release-Artefakte gemäß Schema `Themenlisten-Helfer_v<version>.zip` bzw. die EXE aus `dist/`.
 - Word-Vorlagen werden in den Formaten `.docx` und `.dotm` unterstützt.
 - Onefile-Builds laden eingebettete Ressourcen robust aus dem Bundle und verwenden das EXE-Verzeichnis für laufzeitnahe Dateien.
 
@@ -66,10 +74,10 @@ Themenlisten-Helfer/
 Der Build läuft über `scripts/build_tlh.bat` und erzeugt:
 
 - EXE in `dist/`
-- EXE- und ZIP-Artefakte in `release/`
+- ZIP-Artefakte in `release/`
 - automatische Versionserhöhung in `src/version.txt`
 
-Für die Veröffentlichung von `2.5.2` wurden die Laufzeit-Abhängigkeiten, die Onefile-Pfadauflösung und die Vorlagenerkennung ausdrücklich nachgeschärft.
+Historische versionsspezifische Änderungen sind im `docs/CHANGELOG.md` dokumentiert.
 
 Optionaler Komfortaufruf aus `src`: `src/build.bat` (delegiert intern an `scripts/build_tlh.bat`).
 
@@ -84,25 +92,25 @@ PowerShell-Standardaufruf:
 - Trigger: Push eines Tags im Format `v*` (z. B. `v2.4.5`)
 - Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md`, ergänzende GitHub Release Notes und Upload von EXE/ZIP/Release Notes als Release-Assets
 - Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md`, ergänzende GitHub Release Notes und Upload von `dist`-EXE/ZIP/Release Notes als Release-Assets
-- Release-Titel-Schema: `Themenlisten-Helfer v...` (z. B. `Themenlisten-Helfer v1.0.0`)
-- Guard: Bei Tag-Builds muss `src/version.txt` exakt zur Tag-Version passen (z. B. `v2.4.5` ↔ `2.4.5`), sonst bricht der Workflow mit Fehler ab
-- Guard: Tags müssen semantisch formatiert sein: `vMAJOR.MINOR.PATCH` (z. B. `v2.4.5`)
+- Release-Titel-Schema: `Themenlisten-Helfer v...` (z. B. `Themenlisten-Helfer vX.Y.Z`)
+- Guard: Bei Tag-Builds muss `src/version.txt` exakt zur Tag-Version passen (z. B. `vX.Y.Z` ↔ `X.Y.Z`), sonst bricht der Workflow mit Fehler ab
+- Guard: Tags müssen semantisch formatiert sein: `vMAJOR.MINOR.PATCH` (z. B. `vX.Y.Z`)
 - Guardrail: Falls ein Release versehentlich mit Titelmuster `Release v...` erstellt wurde, normalisiert der Workflow den Titel automatisch auf das Produktschema.
 
-Für das aktuelle Release gilt daher: Git-Stand committen, sicherstellen, dass `src/version.txt` auf die gewünschte Version steht, dann entsprechenden Tag pushen (z. B. `v1.0.0`).
+Für das aktuelle Release gilt daher: Git-Stand committen, sicherstellen, dass `src/version.txt` auf die gewünschte Version steht, dann den entsprechenden Tag pushen (z. B. `vX.Y.Z`).
 
 ### Release-Workflow testen
 
-1. `src/version.txt` auf eine Testversion setzen (z. B. `2.4.5`).
+1. `src/version.txt` auf eine Testversion setzen (z. B. `X.Y.Z`).
 2. Test-Tag erstellen und pushen:
-   - `git tag v2.4.5`
-   - `git push origin v2.4.5`
+   - `git tag vX.Y.Z`
+   - `git push origin vX.Y.Z`
 3. In GitHub prüfen:
    - Workflow-Lauf unter **Actions**
    - neues Release mit EXE/ZIP unter **Releases**
 4. Optional aufräumen (nur bei Test-Tag):
-   - `git tag -d v2.4.5`
-   - `git push origin :refs/tags/v2.4.5`
+   - `git tag -d vX.Y.Z`
+   - `git push origin :refs/tags/vX.Y.Z`
 
 ## Migration (Mai 2026)
 

@@ -94,7 +94,7 @@ Das Tabellenblatt `Hilfstabellen` dient ebenfalls als Hilfsmittel und sollte nic
 
 - Prüfen, ob Datei nach Muster `Themenliste_<Lernbereich>*.docx` oder `Themenliste_<Lernbereich>*.dotm` vorliegt.
 - Ordner prüfen: `data/Themenlisten-Vorlagen/`.
-- Bei Nutzung der EXE bitte möglichst die aktuelle Version `release/Themenlisten-Helfer_1.0.0.exe` verwenden.
+- Bei Nutzung der EXE bitte stets die aktuellste veröffentlichte Version aus den GitHub-Releases verwenden.
 
 ### Excel-Datei nicht gefunden
 

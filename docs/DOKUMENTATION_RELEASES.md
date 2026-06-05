@@ -40,9 +40,9 @@ Erweiterter QA-Standard (wie in Schwesterprojekten):
 
 ## Aktueller Release-Stand
 
-- Zuletzt gebaut und veröffentlicht: `1.0.0`
-- In Vorbereitung (Release-Prep): `1.0.1`
-- Wichtige Inhalte der Vorbereitung `1.0.1`: modulare Code-Struktur, erweiterte Testabdeckung und Release-QA-Ablauf analog Schwesterprojekten.
+- Aktuelle Zielversion: immer aus `src/version.txt` ableiten.
+- Veröffentlichtes Release: immer in GitHub Releases prüfen.
+- Versionsspezifische Inhalte und Historie: `docs/CHANGELOG.md`.
 
 ## Artefakte
 
@@ -67,7 +67,7 @@ Release-Titel auf GitHub folgen dem Schema:
 
 - `Themenlisten-Helfer v...`
 
-Beispiel: `Themenlisten-Helfer v1.0.0`.
+Beispiel: `Themenlisten-Helfer vX.Y.Z`.
 
 Falls versehentlich ein Titel wie `Release v...` entsteht, korrigiert die Guardrail im Release-Workflow den Titel automatisch.
 
@@ -82,20 +82,20 @@ Release Notes sollten enthalten:
 
 ## Release-Workflow testen (Tag-basiert)
 
-1. `src/version.txt` auf die gewünschte Testversion setzen (z. B. `2.4.5`).
+1. `src/version.txt` auf die gewünschte Testversion setzen (z. B. `X.Y.Z`).
 2. Tag erstellen und pushen:
-   - `git tag v2.4.5`
-   - `git push origin v2.4.5`
+   - `git tag vX.Y.Z`
+   - `git push origin vX.Y.Z`
 3. Ergebnis prüfen:
    - GitHub Actions: Release-Workflow erfolgreich
    - GitHub Releases: neues Release inkl. EXE/ZIP-Assets
 4. Optional Test-Tag entfernen:
-   - `git tag -d v2.4.5`
-   - `git push origin :refs/tags/v2.4.5`
+   - `git tag -d vX.Y.Z`
+   - `git push origin :refs/tags/vX.Y.Z`
 
 ## Praktischer Hinweis für das aktuelle Release
 
-Wenn `src/version.txt` bereits auf der gewünschten Version (z. B. `1.0.0`) steht, muss für die GitHub-Veröffentlichung derselbe Commit mit dem passenden Tag (z. B. `v1.0.0`) versehen und gepusht werden. Andernfalls schlägt der Release-Workflow absichtlich fehl.
+Wenn `src/version.txt` bereits auf der gewünschten Version (z. B. `X.Y.Z`) steht, muss für die GitHub-Veröffentlichung derselbe Commit mit dem passenden Tag (z. B. `vX.Y.Z`) versehen und gepusht werden. Andernfalls schlägt der Release-Workflow absichtlich fehl.
 
 ## Zielbild Release-Vorbereitung
 
