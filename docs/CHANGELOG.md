@@ -82,7 +82,7 @@ Die folgenden Einträge dokumentieren frühere interne Entwicklungsstände vor d
 
 ### Updated (2.5.3)
 
-- MIT-Lizenz eingeführt; Copyright-Inhaber: Dr. Thomas Gorontzy (GoroTech).
+- MIT-Lizenz eingeführt; Copyright-Inhaber: GoroTech-Tools.
 - Dokumentation Anwender erweitert: Hinweise zur Vorlagenpflege (Kopf-/Fußzeilen, Platzhalter), E-Mail-Konfiguration im Tabellenblatt `E-Mail-Konfiguration`, sowie Hinweise zu den Tabellenblättern `Vorbereitung` und `Hilfstabellen`.
 
 ## [2.5.2] - 2026-05-18

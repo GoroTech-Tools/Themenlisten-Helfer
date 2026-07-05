@@ -25,8 +25,8 @@
 
 Details / Abweichungen:
 
-- CI-Release-Workflow erfolgreich: `https://github.com/TomGorontzy/Themenlisten-Helfer/actions/runs/27027872920`
-- GitHub-Release veröffentlicht: `https://github.com/TomGorontzy/Themenlisten-Helfer/releases/tag/v1.0.2`
+- CI-Release-Workflow erfolgreich: `https://github.com/GoroTech-Tools/Themenlisten-Helfer/actions/runs/27027872920`
+- GitHub-Release veröffentlicht: `https://github.com/GoroTech-Tools/Themenlisten-Helfer/releases/tag/v1.0.2`
 
 ## 3) Post-Release-Verifikation
 

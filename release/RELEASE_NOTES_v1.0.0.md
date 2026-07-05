@@ -15,4 +15,4 @@
 ## Hinweise
 
 - Empfohlenes Testartefakt: `dist/ThemenlistenHelfer_GUI.exe`
-- Vollständiger Commit-Verlauf: `https://github.com/TomGorontzy/Themenlisten-Helfer/commits/v1.0.0`
+- Vollständiger Commit-Verlauf: `https://github.com/GoroTech-Tools/Themenlisten-Helfer/commits/v1.0.0`

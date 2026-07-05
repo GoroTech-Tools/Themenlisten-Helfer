@@ -133,7 +133,7 @@ set NOTESFILE=!RELEASE_DIR!\!NOTESNAME!
 >> "!NOTESFILE!" echo ## Hinweise
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `dist\ThemenlistenHelfer_GUI.exe`
->> "!NOTESFILE!" echo - Vollstaendiger Commit-Verlauf: `https://github.com/TomGorontzy/Themenlisten-Helfer/commits/v!NEWVERSION!`
+>> "!NOTESFILE!" echo - Vollstaendiger Commit-Verlauf: `https://github.com/GoroTech-Tools/Themenlisten-Helfer/commits/v!NEWVERSION!`
 
 echo Release Notes erstellt: !NOTESFILE!
 

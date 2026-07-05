@@ -89,7 +89,7 @@ flowchart TD
 
 - Ausgabepfad auf einzelnen Ordner `Themenlisten/` vereinfacht; `output/Themenlisten/` entfällt als Schreibziel
 - Pylance-Fehler beseitigt: `_MEIPASS`-Attributzugriff abgesichert, `Optional[str]`-Rückgabetyp in `resolve_path`, explizite `None`-Guards vor `os.makedirs` und `os.path.join`
-- MIT-Lizenz eingeführt (Copyright Dr. Thomas Gorontzy / GoroTech)
+- MIT-Lizenz eingeführt (Copyright GoroTech-Tools)
 - Dokumentation Anwender um Vorlagen- und E-Mail-Konfigurationshinweise erweitert
 
 ## Geplante Modularisierung (`src/`)

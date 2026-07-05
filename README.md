@@ -140,5 +140,5 @@ Für Markdown-Dateien gelten projektweit die Regeln aus `.markdownlint.json` (ak
 
 ## Lizenz
 
-MIT License – Copyright (c) 2026 Dr. Thomas Gorontzy (GoroTech).
+MIT License – Copyright (c) 2026 GoroTech-Tools.
 Siehe [LICENSE](docs/LICENSE) für den vollständigen Lizenztext.
