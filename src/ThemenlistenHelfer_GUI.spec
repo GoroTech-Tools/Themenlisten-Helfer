@@ -35,7 +35,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='ThemenlistenHelfer_GUI',
+    name='ThemenlistenHelfer',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
