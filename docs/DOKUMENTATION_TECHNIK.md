@@ -41,10 +41,10 @@ Die GUI startet den Ablauf asynchron über einen Thread.
 
 ## Pfadstrategie
 
-Die App nutzt bevorzugt die neue Struktur:
+Die App nutzt bevorzugt die neue Struktur mit Legacy-Fallback:
 
 - Vorlagen: `data/Themenlisten-Vorlagen/` → `templates/Themenlisten-Vorlagen/` → `Themenlisten-Vorlagen/`
-- Ausgabe: `output/Themenlisten/`
+- Ausgabe: `Themenlisten/` (ab 2.5.3 fest; vorher `output/Themenlisten/` mit Legacy-Fallback)
 - Daten: `data/Auswahl Teilnehmende zu Lernbereichen.xlsx` → Root-Datei
 - Version: `src/version.txt` → `config/version.txt` → `version.txt`
 - Assets: `assets/icons|images` → Root-Dateien
@@ -87,7 +87,7 @@ flowchart TD
 
 ## Relevante Korrekturen in `2.5.3`
 
-- Ausgabepfad auf `output/Themenlisten/` als zentrales Schreibziel
+- Ausgabepfad auf einzelnen Ordner `Themenlisten/` vereinfacht; `output/Themenlisten/` entfällt als Schreibziel
 - Pylance-Fehler beseitigt: `_MEIPASS`-Attributzugriff abgesichert, `Optional[str]`-Rückgabetyp in `resolve_path`, explizite `None`-Guards vor `os.makedirs` und `os.path.join`
 - MIT-Lizenz eingeführt (Copyright GoroTech-Tools)
 - Dokumentation Anwender um Vorlagen- und E-Mail-Konfigurationshinweise erweitert
