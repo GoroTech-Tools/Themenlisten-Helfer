@@ -51,7 +51,7 @@ Die App nutzt bevorzugt die neue Struktur mit Legacy-Fallback:
 
 Für PyInstaller-Onefile gilt zusätzlich:
 
-- Ressourcen werden zuerst relativ zum Bundle (`sys._MEIPASS`) und anschließend relativ zum Anwendungsverzeichnis gesucht.
+- Ressourcen werden zuerst relativ zum Anwendungsverzeichnis gesucht; das Bundle (`sys._MEIPASS`) bleibt als Fallback aktiv.
 - Schreiboperationen (z. B. erzeugte Themenlisten) zielen weiterhin auf das EXE-/Projektverzeichnis, nicht auf `_MEIPASS`.
 
 Damit bleiben alte Deployments lauffähig.

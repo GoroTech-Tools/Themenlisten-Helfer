@@ -11,11 +11,11 @@ def get_app_dir() -> str:
 
 
 def get_resource_dirs() -> list[str]:
-    dirs: list[str] = []
+    dirs: list[str] = [get_app_dir()]
     meipass = getattr(sys, '_MEIPASS', None)
     if getattr(sys, 'frozen', False) and isinstance(meipass, str) and meipass:
-        dirs.append(meipass)
-    dirs.append(get_app_dir())
+        if meipass not in dirs:
+            dirs.append(meipass)
     return dirs
 
 
