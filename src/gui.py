@@ -96,7 +96,7 @@ def erstelle_themenlisten(excel_path: str, status_callback: StatusCallback) -> T
         status_callback(f"[FEHLER] Im Vorlagenordner wurden keine .docx- oder .dotm-Dateien gefunden: {vorlagen_ordner}")
         result['aborted'] = True
         return result
-    ausgabe_ordner = os.path.join(app_dir, 'Themenlisten')
+    ausgabe_ordner = os.path.join(app_dir, 'output', 'Themenlisten')
     os.makedirs(ausgabe_ordner, exist_ok=True)
     for idx, row in df.iterrows():
         lernbereich = str(row['Lernbereich'])
@@ -145,7 +145,7 @@ def erstelle_emails(excel_path: str, status_callback: StatusCallback) -> EmailRe
         status_callback(f"[FEHLER] Im Vorlagenordner wurden keine .docx- oder .dotm-Dateien gefunden: {vorlagen_ordner}")
         result['aborted'] = True
         return result
-    ausgabe_ordner = os.path.join(app_dir, 'Themenlisten')
+    ausgabe_ordner = os.path.join(app_dir, 'output', 'Themenlisten')
     os.makedirs(ausgabe_ordner, exist_ok=True)
     try:
         outlook = win32.Dispatch('Outlook.Application')
@@ -196,7 +196,7 @@ def erstelle_emails(excel_path: str, status_callback: StatusCallback) -> EmailRe
 
 def loesche_alte_themenlisten(_excel_path: str, status_callback: StatusCallback) -> int:
     app_dir = get_app_dir()
-    ausgabe_ordner = os.path.join(app_dir, 'Themenlisten')
+    ausgabe_ordner = os.path.join(app_dir, 'output', 'Themenlisten')
     return loesche_alte_dateien(ausgabe_ordner, status_callback)
 
 
