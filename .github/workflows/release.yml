@@ -81,7 +81,7 @@ jobs:
           $notesPath = "release/$notesName"
 
           if (Test-Path "release/$zipName") { Remove-Item "release/$zipName" -Force }
-          Compress-Archive -Path "dist/ThemenlistenHelfer_GUI.exe", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
+          Compress-Archive -Path "dist/ThemenlistenHelfer.exe", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
 
           $notesLines = @(
             "# Release Notes v${env:VERSION}",
@@ -89,18 +89,18 @@ jobs:
             "## Enthalten",
             "",
             "- Themenlisten-Helfer im Versionsstand ${env:VERSION}.",
-            "- Release-Artefakte im Schema ``ThemenlistenHelfer_GUI.exe``, ``Themenlisten-Helfer_v<version>.zip`` und ``RELEASE_NOTES_v<version>.md``.",
+            "- Release-Artefakte im Schema ``ThemenlistenHelfer.exe``, ``Themenlisten-Helfer_v<version>.zip`` und ``RELEASE_NOTES_v<version>.md``.",
             "- Dokumentation unter ``docs/`` sowie ergänzende GitHub Release Notes im Release-Eintrag.",
             "",
             "## Artefakte",
             "",
-            "- ``dist/ThemenlistenHelfer_GUI.exe``",
+            "- ``dist/ThemenlistenHelfer.exe``",
             "- ``release/$zipName``",
             "- ``release/$notesName``",
             "",
             "## Hinweise",
             "",
-            "- Empfohlenes Testartefakt: ``dist/ThemenlistenHelfer_GUI.exe``",
+            "- Empfohlenes Testartefakt: ``dist/ThemenlistenHelfer.exe``",
             "- Vollständiger Commit-Verlauf: ``https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}``"
           )
           Set-Content -Path $notesPath -Encoding utf8 -Value ($notesLines -join "`n")
@@ -110,7 +110,7 @@ jobs:
         with:
           name: release-assets-v${{ steps.set_version.outputs.version }}
           path: |
-            dist/ThemenlistenHelfer_GUI.exe
+            dist/ThemenlistenHelfer.exe
             release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
             release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
 
@@ -123,7 +123,7 @@ jobs:
           body_path: release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
           generate_release_notes: false
           files: |
-            dist/ThemenlistenHelfer_GUI.exe
+            dist/ThemenlistenHelfer.exe
             release/Themenlisten-Helfer_v${{ steps.set_version.outputs.version }}.zip
             release/RELEASE_NOTES_v${{ steps.set_version.outputs.version }}.md
 
