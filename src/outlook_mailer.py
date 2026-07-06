@@ -7,7 +7,7 @@ from core_utils import ersetze_umlaute
 ZUSATZANHANG_HINWEIS = "PS: Bitte sehen Sie sich auch die anderen Anlagen von dieser Nachricht an."
 
 
-def ermittle_empfaengeradresse(vorname: str, nachname: str, domain: str = 'ab.bfw.local', max_laenge: int = 20) -> str:
+def ermittle_empfaengeradresse(vorname: str, nachname: str, domain: str = 'ab.bfw.local', max_laenge: int = 21) -> str:
     vornamen_roh = str(vorname).lower()
     nachname_norm = ersetze_umlaute(str(nachname).lower())
     vornamen_ohne_leer = ersetze_umlaute(vornamen_roh.replace(' ', ''))
