@@ -2,16 +2,16 @@
 
 Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 
-## [Unreleased]
+## [1.0.5] - 2026-07-07
 
-### Fixed (Unreleased)
+### Fixed (1.0.5)
 
 - Robustere Filterung der zu verarbeitenden Datensätze: `Verarbeiten` wird jetzt fehlertolerant (`NaN`-sicher, trim + lowercase) ausgewertet.
 - Outlook-Initialisierung in der E-Mail-Erstellung mit expliziter Fehlerbehandlung abgesichert; bei COM-Startfehlern erfolgt kontrollierter Abbruch mit Statusmeldung.
 - COM-Lifecycle im Batch-Ablauf verbessert: `pythoncom.CoUninitialize()` wird im `finally`-Block ausgeführt.
 - GitHub-Release-Notes-Generierung im Workflow korrigiert (keine fehlerhaften `` `r ``-Artefakte mehr im Markdown-Body).
 
-### Changed (Unreleased)
+### Changed (1.0.5)
 
 - Kleine Codebereinigung in `src/ThemenlistenHelfer_GUI.py` (entfernte ungenutzte Imports, doppelte Dateinamenzuweisung entfernt).
 - Erste Modularisierung umgesetzt: pure Hilfsfunktionen in neues Modul `src/core_utils.py` ausgelagert.
@@ -26,7 +26,7 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 - Release-Dokumentation an Schwesterprojekt-Standard angeglichen (QA-Checkliste und Smoketest-Protokoll als Pflichtreferenzen im Release-Prozess).
 - E-Mail-Body ergänzt bei vorhandenen Zusatzanhängen automatisch einen PS-Hinweis auf weitere Anlagen.
 
-### Added (Unreleased)
+### Added (1.0.5)
 
 - Unit-Tests für Kernlogik unter `tests/test_core_utils.py` ergänzt (Umlautersetzung, Vorlagenfindung, Filterung `Verarbeiten`).
 - Zusätzliche Unit-Tests unter `tests/test_io_excel.py` und `tests/test_outlook_mailer.py` ergänzt.
