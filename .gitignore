@@ -26,8 +26,6 @@ Thumbs.db
 Desktop.ini
 
 # Runtime output
-output/Themenlisten/*
-!output/Themenlisten/.gitkeep
 Themenlisten/*
 !Themenlisten/.gitkeep
 

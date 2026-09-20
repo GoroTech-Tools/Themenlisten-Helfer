@@ -41,12 +41,12 @@ Die GUI startet den Ablauf asynchron über einen Thread.
 
 ## Pfadstrategie
 
-Die App nutzt bevorzugt die neue Struktur mit Legacy-Fallback:
+Die App nutzt die folgende Verzeichnisstruktur:
 
-- Vorlagen: `data/Themenlisten-Vorlagen/` → `templates/Themenlisten-Vorlagen/` → `Themenlisten-Vorlagen/`
-- Ausgabe: `Themenlisten/` (ab 2.5.3 fest; vorher `output/Themenlisten/` mit Legacy-Fallback)
+- Vorlagen: `data/Themenlisten-Vorlagen/` → `Themenlisten-Vorlagen/`
+- Ausgabe: `Themenlisten/`
 - Daten: `data/Auswahl Teilnehmende zu Lernbereichen.xlsx` → Root-Datei
-- Version: `src/version.txt` → `config/version.txt` → `version.txt`
+- Version: `src/version.txt` → `version.txt`
 - Assets: `assets/icons|images` → Root-Dateien
 
 Für PyInstaller-Onefile gilt zusätzlich:
@@ -65,7 +65,7 @@ flowchart TD
     C --> D[Platzhalter ersetzen]
     D --> E[Word Dokument speichern]
     D --> F[E-Mail Entwurf erzeugen]
-    E --> G[output Themenlisten]
+    E --> G[Themenlisten]
     F --> H[Outlook Drafts]
 ```
 

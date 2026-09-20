@@ -38,8 +38,6 @@ Themenlisten-Helfer/
 │   ├── Auswahl Teilnehmende zu Lernbereichen.xlsx
 │   └── Themenlisten-Vorlagen/
 ├── docs/                         # fachliche Dokumentation und Standards
-├── output/
-│   └── Themenlisten/             # erzeugte Dateien
 ├── release/                      # veröffentlichte EXE/ZIP-Artefakte
 ├── scripts/                      # optionale Hilfsskripte
 │   └── build_tlh.bat             # Build-/Release-Skript

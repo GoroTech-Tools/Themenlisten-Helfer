@@ -5,26 +5,18 @@ setlocal enabledelayedexpansion
 REM Immer vom Projektstamm aus arbeiten
 cd /d "%~dp0\.."
 
-REM Neue Standardordner (mit Legacy-Fallback)
+REM Standardordner
 set VERSION_FILE=src\version.txt
-if not exist "!VERSION_FILE!" set VERSION_FILE=config\version.txt
 if not exist "!VERSION_FILE!" set VERSION_FILE=version.txt
 
 set ICON_FILE=assets\icons\Themenlistenhelfer256.ico
 if not exist "!ICON_FILE!" set ICON_FILE=Themenlistenhelfer256.ico
 
-set IMG_FILE=assets\images\Themenlistenhelfer.png
-if not exist "!IMG_FILE!" set IMG_FILE=Themenlistenhelfer.png
-
 set EXCEL_FILE=data\Auswahl Teilnehmende zu Lernbereichen.xlsx
 if not exist "!EXCEL_FILE!" set EXCEL_FILE=Auswahl Teilnehmende zu Lernbereichen.xlsx
 
 set TEMPLATE_DIR=data\Themenlisten-Vorlagen
-if not exist "!TEMPLATE_DIR!" set TEMPLATE_DIR=templates\Themenlisten-Vorlagen
 if not exist "!TEMPLATE_DIR!" set TEMPLATE_DIR=Themenlisten-Vorlagen
-
-set OUTPUT_DIR=output\Themenlisten
-if not exist "!OUTPUT_DIR!" set OUTPUT_DIR=Themenlisten
 
 set RELEASE_DIR=release
 if not exist "!RELEASE_DIR!" mkdir "!RELEASE_DIR!"
@@ -135,7 +127,7 @@ for %%f in ("!RELEASE_DIR!\RELEASE_NOTES_v*.md") do if exist "%%~f" move /Y "%%~
 REM --- Archivierung als ZIP mit Versionsnummer ---
 set ZIPNAME=Themenlisten-Helfer_v!NEWVERSION!.zip
 if exist "!RELEASE_DIR!\!ZIPNAME!" del "!RELEASE_DIR!\!ZIPNAME!"
-powershell -Command "Compress-Archive -Path dist\!EXENAME!, 'data', 'output', '!IMG_FILE!', '!VERSION_FILE!', 'README.md', 'docs' -DestinationPath '!RELEASE_DIR!\!ZIPNAME!'"
+powershell -Command "Compress-Archive -Path dist\!EXENAME!, 'data', 'README.md', 'docs' -DestinationPath '!RELEASE_DIR!\!ZIPNAME!'"
 if errorlevel 1 (
     echo [FEHLER] ZIP-Archiv konnte nicht erstellt werden.
     exit /b 1

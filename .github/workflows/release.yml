@@ -81,7 +81,7 @@ jobs:
           $notesPath = "release/$notesName"
 
           if (Test-Path "release/$zipName") { Remove-Item "release/$zipName" -Force }
-          Compress-Archive -Path "dist/ThemenlistenHelfer.exe", "data", "output", "assets/images/Themenlistenhelfer.png", "src/version.txt", "README.md", "docs" -DestinationPath "release/$zipName"
+          Compress-Archive -Path "dist/ThemenlistenHelfer.exe", "data", "README.md", "docs" -DestinationPath "release/$zipName"
 
           $notesLines = @(
             "# Release Notes v${env:VERSION}",

@@ -14,7 +14,6 @@ a = Analysis(
     datas=[
         (str(ROOT_DIR / 'assets' / 'icons' / 'Themenlistenhelfer256.ico'), '.'),
         (str(ROOT_DIR / 'data' / 'Themenlisten-Vorlagen'), 'data/Themenlisten-Vorlagen'),
-        (str(ROOT_DIR / 'output' / 'Themenlisten'), 'output/Themenlisten'),
         (str(ROOT_DIR / 'data' / 'Auswahl Teilnehmende zu Lernbereichen.xlsx'), 'data'),
         (str(ROOT_DIR / 'assets' / 'images' / 'Themenlistenhelfer.png'), 'assets/images'),
         (str(SRC_DIR / 'version.txt'), 'src'),

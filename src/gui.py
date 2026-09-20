@@ -83,12 +83,11 @@ def erstelle_themenlisten(excel_path: str, status_callback: StatusCallback) -> T
     resource_dirs = get_resource_dirs()
     vorlagen_ordner = resolve_path(
         *[os.path.join(d, 'data', 'Themenlisten-Vorlagen') for d in resource_dirs],
-        *[os.path.join(d, 'templates', 'Themenlisten-Vorlagen') for d in resource_dirs],
         *[os.path.join(d, 'Themenlisten-Vorlagen') for d in resource_dirs],
         must_exist=True
     )
     if not vorlagen_ordner:
-        status_callback("[FEHLER] Kein Vorlagenordner gefunden (erwartet: data/Themenlisten-Vorlagen, templates/Themenlisten-Vorlagen oder Themenlisten-Vorlagen).")
+        status_callback("[FEHLER] Kein Vorlagenordner gefunden (erwartet: data/Themenlisten-Vorlagen oder Themenlisten-Vorlagen).")
         result['aborted'] = True
         return result
     vorhandene_vorlagen = finde_vorlagen(vorlagen_ordner)
@@ -132,12 +131,11 @@ def erstelle_emails(excel_path: str, status_callback: StatusCallback) -> EmailRe
     resource_dirs = get_resource_dirs()
     vorlagen_ordner = resolve_path(
         *[os.path.join(d, 'data', 'Themenlisten-Vorlagen') for d in resource_dirs],
-        *[os.path.join(d, 'templates', 'Themenlisten-Vorlagen') for d in resource_dirs],
         *[os.path.join(d, 'Themenlisten-Vorlagen') for d in resource_dirs],
         must_exist=True
     )
     if not vorlagen_ordner:
-        status_callback("[FEHLER] Kein Vorlagenordner gefunden (erwartet: data/Themenlisten-Vorlagen, templates/Themenlisten-Vorlagen oder Themenlisten-Vorlagen).")
+        status_callback("[FEHLER] Kein Vorlagenordner gefunden (erwartet: data/Themenlisten-Vorlagen oder Themenlisten-Vorlagen).")
         result['aborted'] = True
         return result
     vorhandene_vorlagen = finde_vorlagen(vorlagen_ordner)
@@ -208,7 +206,6 @@ class ThemenlistenApp:
             resource_dirs = get_resource_dirs()
             version_path = resolve_path(
                 *[os.path.join(d, "src", "version.txt") for d in resource_dirs],
-                *[os.path.join(d, "config", "version.txt") for d in resource_dirs],
                 *[os.path.join(d, "version.txt") for d in resource_dirs],
                 must_exist=True
             )
