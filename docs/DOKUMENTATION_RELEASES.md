@@ -6,7 +6,7 @@ Detailablauf in fester Reihenfolge: `docs/RELEASE_PROZESS.md`.
 
 ```mermaid
 flowchart LR
-   A[src version.txt] --> B[Build script build_tlh.bat]
+   A[src version.txt] --> B[src scripts build_tlh.bat]
    B --> C[PyInstaller EXE]
    C --> D[Release assets EXE ZIP]
    D --> E[Tag push vX.Y.Z]
@@ -20,7 +20,7 @@ flowchart LR
 
 - Dateiführend: `src/version.txt`
 - Schema: `MAJOR.MINOR.PATCH`
-- `scripts/build_tlh.bat` erhöht standardmäßig `PATCH`.
+- `src/scripts/build_tlh.bat` erhöht standardmäßig `PATCH`.
 
 ## Release-Checkliste
 
@@ -29,7 +29,7 @@ flowchart LR
    - GUI startet
    - Dokumenterstellung funktioniert
    - Outlook-Entwurf wird erzeugt
-3. Build ausführen (`scripts/build_tlh.bat`).
+3. Build ausführen (`src/scripts/build_tlh.bat`).
 4. ZIP/EXE kurz validieren.
 5. Tag/Release in GitHub erstellen.
 
@@ -63,7 +63,7 @@ Kurz: `dist/` ist die Build-Wahrheit, `release/` enthält die veröffentlichungs
 
 ## Archivierung früherer lokaler Releases
 
-Nach einem erfolgreichen lokalen Build verschiebt `scripts/build_tlh.bat` die
+Nach einem erfolgreichen lokalen Build verschiebt `src/scripts/build_tlh.bat` die
 vorherigen ZIP-Dateien, entpackten Release-Ordner und Release-Notes-Dateien nach
 `release/_Archiv/`. Dadurch bleibt im Ordner `release/` nur der aktuelle
 Versionsstand sichtbar. ZIPs und entpackte Release-Ordner bleiben lokal; die

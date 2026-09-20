@@ -12,10 +12,10 @@ a = Analysis(
     pathex=[str(SRC_DIR)],
     binaries=[],
     datas=[
-        (str(ROOT_DIR / 'assets' / 'icons' / 'Themenlistenhelfer256.ico'), '.'),
+        (str(SRC_DIR / 'assets' / 'icons' / 'Themenlistenhelfer256.ico'), '.'),
         (str(ROOT_DIR / 'data' / 'Themenlisten-Vorlagen'), 'data/Themenlisten-Vorlagen'),
         (str(ROOT_DIR / 'data' / 'Auswahl Teilnehmende zu Lernbereichen.xlsx'), 'data'),
-        (str(ROOT_DIR / 'assets' / 'images' / 'Themenlistenhelfer.png'), 'assets/images'),
+        (str(SRC_DIR / 'assets' / 'images' / 'Themenlistenhelfer.png'), 'assets/images'),
         (str(SRC_DIR / 'version.txt'), 'src'),
     ],
     hiddenimports=[],
@@ -47,5 +47,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=[str(ROOT_DIR / 'assets' / 'icons' / 'Themenlistenhelfer256.ico')],
+    icon=[str(SRC_DIR / 'assets' / 'icons' / 'Themenlistenhelfer256.ico')],
 )

@@ -47,7 +47,7 @@ Die App nutzt die folgende Verzeichnisstruktur:
 - Ausgabe: `Themenlisten/`
 - Daten: `data/Auswahl Teilnehmende zu Lernbereichen.xlsx` → Root-Datei
 - Version: `src/version.txt` → `version.txt`
-- Assets: `assets/icons|images` → Root-Dateien
+- Assets: `src/assets/icons|images`
 
 Für PyInstaller-Onefile gilt zusätzlich:
 
@@ -73,7 +73,7 @@ flowchart TD
 
 ## Build & Packaging
 
-- `scripts/build_tlh.bat` erhöht Patch-Version, nutzt explizit das konfigurierte 64-Bit-Python und erstellt die EXE via PyInstaller.
+- `src/scripts/build_tlh.bat` erhöht Patch-Version, nutzt explizit das konfigurierte 64-Bit-Python und erstellt die EXE via PyInstaller.
 - `src/ThemenlistenHelfer_GUI.spec` enthält notwendige Datenordner.
 - ZIP-Archiv wird mit EXE + relevanten Assets/Daten erzeugt.
 - Build prüft Abhängigkeiten aus `src/requirements.txt` (Fallback: `requirements.txt`) vor dem Packaging.
@@ -100,7 +100,8 @@ Empfohlene Aufteilung in nächsten Schritten:
 - **Bereits umgesetzt:** `src/io_excel.py` und `src/outlook_mailer.py`.
 - **Bereits umgesetzt:** `src/docx_renderer.py` und `src/cleanup.py`.
 - **Bereits umgesetzt:** `src/gui.py` als zentraler UI-Einstieg; `src/ThemenlistenHelfer_GUI.py` fungiert als Kompatibilitäts-Launcher.
-- Begleitende Unit-Tests: `tests/test_core_utils.py`, `tests/test_io_excel.py`, `tests/test_outlook_mailer.py`, `tests/test_docx_renderer.py`, `tests/test_cleanup.py`.
+- Begleitende Unit-Tests: `src/tests/test_core_utils.py`, `src/tests/test_io_excel.py`, `src/tests/test_outlook_mailer.py`, `src/tests/test_docx_renderer.py`, `src/tests/test_cleanup.py`.
+- Der CI-Workflow führt die Tests verbindlich mit `python -m pytest src/tests -q` aus.
 
 
 ## Qualitätsrichtlinien

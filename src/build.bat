@@ -1,8 +1,8 @@
 @echo off
 setlocal
 
-REM Starter aus src: delegiert an das eigentliche Build-Skript im Projektstamm
-set "SCRIPT=%~dp0..\scripts\build_tlh.bat"
+REM Starter aus src: delegiert an das Build-Skript unter src\scripts
+set "SCRIPT=%~dp0scripts\build_tlh.bat"
 
 if not exist "%SCRIPT%" (
     echo [FEHLER] Build-Skript nicht gefunden: "%SCRIPT%"

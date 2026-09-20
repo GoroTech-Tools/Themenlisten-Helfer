@@ -6,6 +6,18 @@ Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 
 _Keine Änderungen._
 
+## [1.0.8] - 2026-09-20
+
+### Changed (1.0.8)
+
+- Assets, Buildskript und Unit-Tests wurden unter `src/` konsolidiert (`src/assets/`, `src/scripts/`, `src/tests/`).
+- Der CI-Workflow führt die Unit-Tests aus `src/tests/` verbindlich aus.
+- Release-ZIPs enthalten keine leeren Laufzeitordner sowie keine redundanten losen Version-/Bilddateien mehr; diese Ressourcen sind weiterhin in der Onefile-EXE eingebettet.
+
+### Fixed (1.0.8)
+
+- Der lokale Build installiert PyInstaller bei Bedarf, sodass eine neu angelegte 64-Bit-`.venv` den EXE-Build zuverlässig ausführen kann.
+
 ## [1.0.7] - 2026-09-20
 
 ### Added (1.0.7)
@@ -46,9 +58,9 @@ _Keine Änderungen._
 
 ### Added (1.0.5)
 
-- Unit-Tests für Kernlogik unter `tests/test_core_utils.py` ergänzt (Umlautersetzung, Vorlagenfindung, Filterung `Verarbeiten`).
-- Zusätzliche Unit-Tests unter `tests/test_io_excel.py` und `tests/test_outlook_mailer.py` ergänzt.
-- Weitere Unit-Tests unter `tests/test_docx_renderer.py` und `tests/test_cleanup.py` ergänzt.
+- Unit-Tests für Kernlogik unter `src/tests/test_core_utils.py` ergänzt (Umlautersetzung, Vorlagenfindung, Filterung `Verarbeiten`).
+- Zusätzliche Unit-Tests unter `src/tests/test_io_excel.py` und `src/tests/test_outlook_mailer.py` ergänzt.
+- Weitere Unit-Tests unter `src/tests/test_docx_renderer.py` und `src/tests/test_cleanup.py` ergänzt.
 - Neue Release-QA-Dokumente: `docs/RELEASE_QA_CHECKLISTE.md` und `docs/RELEASE_SMOKETEST_PROTOKOLL.md`.
 - Release-Notes-Entwurf für die Zielversion `1.0.1`: `release/RELEASE_NOTES_v1.0.1.md`.
 - Neuer, verbindlicher Ablauf in fester Reihenfolge: `docs/RELEASE_PROZESS.md`.

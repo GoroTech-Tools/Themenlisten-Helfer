@@ -9,7 +9,7 @@ Verbindlicher, reproduzierbarer Ablauf für Build, Tagging und GitHub-Release �
 - `src/version.txt` ist die führende Version.
 - GitHub-Tag muss exakt passen: `vMAJOR.MINOR.PATCH`.
 - Guard im Workflow: `tag == src/version.txt` (sonst Abbruch).
-- Lokales `scripts/build_tlh.bat` erhöht die Patch-Version automatisch.
+- Lokales `src/scripts/build_tlh.bat` erhöht die Patch-Version automatisch.
 
 ## Empfohlener Standardablauf (Tag-gesteuerter GitHub-Release)
 
@@ -39,7 +39,7 @@ Verbindlicher, reproduzierbarer Ablauf für Build, Tagging und GitHub-Release �
    - Release-Titel im Produktschema: `Themenlisten-Helfer v...`.
    - Release Notes enthalten direkte Links zur Release-Seite und zum ZIP-Download.
    - Assets vorhanden:
-   - `dist/ThemenlistenHelfer.exe`
+       - `dist/ThemenlistenHelfer.exe`
      - `release/Themenlisten-Helfer_v<version>.zip`
      - `release/RELEASE_NOTES_v<version>.md`
 
@@ -49,12 +49,12 @@ Verbindlicher, reproduzierbarer Ablauf für Build, Tagging und GitHub-Release �
 
 ## Variante A: Mit lokalem build_tlh.bat
 
-Hinweis: `scripts/build_tlh.bat` erhöht Patch automatisch.
+Hinweis: `src/scripts/build_tlh.bat` erhöht Patch automatisch.
 
 Ablauf:
 
 1. Startwert in `src/version.txt` prüfen.
-2. `scripts/build_tlh.bat` ausführen (Version wird erhöht, Artefakte + Release Notes werden erzeugt).
+2. `src/scripts/build_tlh.bat` ausführen (Version wird erhöht, Artefakte + Release Notes werden erzeugt).
    - Vorherige lokale ZIPs, entpackte Release-Ordner und Release Notes werden nach `release/_Archiv/` verschoben.
 3. Geänderte Dateien prüfen und committen (inkl. neuer Version).
 4. Tag exakt auf die neue Version setzen und pushen.

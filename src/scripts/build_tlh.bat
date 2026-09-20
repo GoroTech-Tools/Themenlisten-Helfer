@@ -3,14 +3,13 @@ REM Versionsnummer aus version.txt lesen und hochzählen
 setlocal enabledelayedexpansion
 
 REM Immer vom Projektstamm aus arbeiten
-cd /d "%~dp0\.."
+cd /d "%~dp0\..\.."
 
 REM Standardordner
 set VERSION_FILE=src\version.txt
 if not exist "!VERSION_FILE!" set VERSION_FILE=version.txt
 
-set ICON_FILE=assets\icons\Themenlistenhelfer256.ico
-if not exist "!ICON_FILE!" set ICON_FILE=Themenlistenhelfer256.ico
+set ICON_FILE=src\assets\icons\Themenlistenhelfer256.ico
 
 set EXCEL_FILE=data\Auswahl Teilnehmende zu Lernbereichen.xlsx
 if not exist "!EXCEL_FILE!" set EXCEL_FILE=Auswahl Teilnehmende zu Lernbereichen.xlsx
@@ -94,6 +93,12 @@ if exist "!REQUIREMENTS_FILE!" (
     )
 ) else (
     echo [WARNUNG] Keine requirements-Datei gefunden - fahre ohne automatische Abhaengigkeitsinstallation fort.
+)
+
+"!PYTHON64!" -m pip install pyinstaller
+if errorlevel 1 (
+    echo [FEHLER] Installation von PyInstaller fehlgeschlagen.
+    exit /b 1
 )
 
 "!PYTHON64!" -m PyInstaller src\ThemenlistenHelfer_GUI.spec

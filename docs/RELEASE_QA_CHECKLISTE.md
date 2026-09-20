@@ -8,7 +8,7 @@ Kurzer, reproduzierbarer Pflichtdurchlauf vor jedem Release (analog Schwesterpro
 
 - Unit-Tests ausführen (`python -m unittest discover -s tests -p "test_*.py"`)
 - Erwartung: alle Tests grün
-- Optional: Build-Skript ohne Fehler durchlaufbar (`scripts/build_tlh.bat`)
+- Optional: Build-Skript ohne Fehler durchlaufbar (`src/scripts/build_tlh.bat`)
 
 ## 2) Smoke-Test (fachlicher Ablauf)
 

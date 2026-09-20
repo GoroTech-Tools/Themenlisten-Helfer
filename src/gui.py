@@ -288,8 +288,8 @@ class ThemenlistenApp:
         try:
             resource_dirs = get_resource_dirs()
             img_path = resolve_path(
+                *[os.path.join(d, "src", "assets", "images", "Themenlistenhelfer.png") for d in resource_dirs],
                 *[os.path.join(d, "assets", "images", "Themenlistenhelfer.png") for d in resource_dirs],
-                *[os.path.join(d, "Themenlistenhelfer.png") for d in resource_dirs],
                 must_exist=True
             )
             if img_path and os.path.exists(img_path):
@@ -378,8 +378,8 @@ def main() -> None:
     root = tk.Tk()
     resource_dirs = get_resource_dirs()
     icon_path = resolve_path(
+        *[os.path.join(d, "src", "assets", "icons", "Themenlistenhelfer256.ico") for d in resource_dirs],
         *[os.path.join(d, "assets", "icons", "Themenlistenhelfer256.ico") for d in resource_dirs],
-        *[os.path.join(d, "Themenlistenhelfer256.ico") for d in resource_dirs],
         must_exist=True
     )
     if icon_path and os.path.exists(icon_path):

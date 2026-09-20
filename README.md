@@ -31,22 +31,20 @@ Das Projekt dient als Arbeitserleichterung für die Begleitung der kaufmännisch
 ```text
 Themenlisten-Helfer/
 ├── .github/                      # Workflows, Issue-/PR-Templates
-├── assets/
-│   ├── icons/                    # ICO-Dateien
-│   └── images/                   # GUI-Bilder (PNG)
 ├── data/                         # Eingabedateien und Vorlagen
 │   ├── Auswahl Teilnehmende zu Lernbereichen.xlsx
 │   └── Themenlisten-Vorlagen/
 ├── docs/                         # fachliche Dokumentation und Standards
 ├── release/                      # veröffentlichte EXE/ZIP-Artefakte
-├── scripts/                      # optionale Hilfsskripte
-│   └── build_tlh.bat             # Build-/Release-Skript
 ├── src/                          # Anwendungsquellcode
+│   ├── assets/                   # Icons und GUI-Bilder
+│   ├── scripts/                  # Build-/Release-Skript
 │   ├── ThemenlistenHelfer_GUI.py # aktueller Einstiegspunkt
 │   ├── ThemenlistenHelfer_GUI.spec # PyInstaller-Spec
 │   ├── build.ps1                 # Build-Entrypoint
 │   ├── setup.ps1                 # Setup-Entrypoint
 │   ├── requirements.txt          # Python-Abhängigkeiten
+│   ├── tests/                    # Unit-Tests für die Quellmodule
 │   └── version.txt               # semantische Version
 ├── build.ps1                     # Kompatibilitäts-Entrypoint
 ├── setup.ps1                     # Kompatibilitäts-Entrypoint
@@ -69,7 +67,7 @@ Themenlisten-Helfer/
 
 ## Build
 
-Der Build läuft über `scripts/build_tlh.bat` und erzeugt:
+Der Build läuft über `src/scripts/build_tlh.bat` und erzeugt:
 
 - EXE in `dist/`
 - ZIP-Artefakte in `release/`
@@ -77,19 +75,15 @@ Der Build läuft über `scripts/build_tlh.bat` und erzeugt:
 
 Historische versionsspezifische Änderungen sind im `docs/CHANGELOG.md` dokumentiert.
 
-Optionaler Komfortaufruf aus `src`: `src/build.bat` (delegiert intern an `scripts/build_tlh.bat`).
+Optionaler Komfortaufruf aus `src`: `src/build.bat` (delegiert intern an `src/scripts/build_tlh.bat`).
 
-PowerShell-Standardaufruf:
-
-- `src/build.ps1` (primär)
-- `build.ps1` (Kompatibilitäts-Entrypoint)
+Für einen lokalen Build `src/build.bat` oder direkt `src/scripts/build_tlh.bat` ausführen.
 
 ## GitHub Release-Automation
 
 - Workflow: `.github/workflows/release.yml`
 - Trigger: Push eines Tags im Format `v*` (z. B. `v2.4.5`)
-- Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md`, ergänzende GitHub Release Notes und Upload von EXE/ZIP/Release Notes als Release-Assets
-- Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md`, ergänzende GitHub Release Notes und Upload von `dist`-EXE/ZIP/Release Notes als Release-Assets
+- Ergebnis: Build auf `windows-latest`, automatische Release-Notes-Datei unter `release/RELEASE_NOTES_v<version>.md` sowie Upload von EXE, ZIP und Release Notes als Release-Assets
 - Release-Titel-Schema: `Themenlisten-Helfer v...` (z. B. `Themenlisten-Helfer vX.Y.Z`)
 - Guard: Bei Tag-Builds muss `src/version.txt` exakt zur Tag-Version passen (z. B. `vX.Y.Z` ↔ `X.Y.Z`), sonst bricht der Workflow mit Fehler ab
 - Guard: Tags müssen semantisch formatiert sein: `vMAJOR.MINOR.PATCH` (z. B. `vX.Y.Z`)
@@ -114,8 +108,8 @@ Für das aktuelle Release gilt daher: Git-Stand committen, sicherstellen, dass `
 
 Folgende Altdateien wurden in die neue Struktur verschoben:
 
-- Icons → `assets/icons/`
-- GUI-Bild → `assets/images/`
+- Icons → `src/assets/icons/`
+- GUI-Bild → `src/assets/images/`
 - Eingabe-Excel → `data/`
 - veröffentlichte EXE/ZIP → `release/`
 

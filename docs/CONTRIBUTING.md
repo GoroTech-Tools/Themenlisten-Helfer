@@ -42,5 +42,5 @@ Direkte Änderungsaufträge außerhalb von GitHub sind nicht vorgesehen.
 ## Qualitätssicherung
 
 - Anwendung lokal starten und Smoke-Test durchführen.
-- Build (`scripts/build_tlh.bat`) einmal lokal testen.
+- Build (`src/scripts/build_tlh.bat`) einmal lokal testen.
 - Keine generierten Binärdateien committen (`.exe`, `.zip`, `dist/`, `build/`).
