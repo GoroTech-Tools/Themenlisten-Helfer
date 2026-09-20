@@ -68,17 +68,25 @@ set EXENAME=Themenlisten-Helfer_!NEWVERSION!.exe
 REM Vorherige EXE löschen
 if exist dist\!EXENAME! del dist\!EXENAME!
 
-REM Alte ZIP-Archive löschen
-for %%f in ("!RELEASE_DIR!\Themenlisten-Helfer_v*.zip") do del "%%~f"
-
 REM Build mit PyInstaller (Interpreter robust aufloesen)
 set PYTHON64=.venv\Scripts\python.exe
+if exist "!PYTHON64!" (
+    "!PYTHON64!" -c "import struct, sys; sys.exit(0 if struct.calcsize('P') * 8 == 64 else 1)" >nul 2>&1
+    if errorlevel 1 set PYTHON64=
+)
+if not defined PYTHON64 set PYTHON64=C:\Users\tomgo\AppData\Local\Programs\Python\Python313\python.exe
 if not exist "!PYTHON64!" set PYTHON64=C:\Users\thomas.gorontzy\AppData\Local\Programs\Python\Python313\python.exe
 if not exist "!PYTHON64!" set PYTHON64=py
 
 "!PYTHON64!" -c "import sys" >nul 2>&1
 if errorlevel 1 (
     echo [FEHLER] Python nicht verfuegbar ueber .venv, festen Pfad oder py-Launcher.
+    exit /b 1
+)
+
+"!PYTHON64!" -c "import struct, sys; sys.exit(0 if struct.calcsize('P') * 8 == 64 else 1)" >nul 2>&1
+if errorlevel 1 (
+    echo [FEHLER] Es wird ein 64-Bit-Python fuer den Build benoetigt.
     exit /b 1
 )
 
@@ -103,13 +111,35 @@ if errorlevel 1 (
 )
 
 REM EXE umbenennen
-move dist\ThemenlistenHelfer_GUI.exe dist\!EXENAME!
+set PYINSTALLER_EXE=dist\ThemenlistenHelfer.exe
+if not exist "!PYINSTALLER_EXE!" (
+    echo [FEHLER] PyInstaller-EXE nicht gefunden: !PYINSTALLER_EXE!
+    exit /b 1
+)
+move /Y "!PYINSTALLER_EXE!" "dist\!EXENAME!"
+if errorlevel 1 (
+    echo [FEHLER] Versionierte EXE konnte nicht erstellt werden.
+    exit /b 1
+)
 
+REM --- ältere Release-Artefakte archivieren ---
+REM Erst nach erfolgreichem EXE-Build archivieren, damit ein Buildfehler
+REM keine bereits vorhandenen Releases verschiebt.
+set ARCHIVE_DIR=!RELEASE_DIR!\_Archiv
+if not exist "!ARCHIVE_DIR!" mkdir "!ARCHIVE_DIR!"
+
+for %%f in ("!RELEASE_DIR!\Themenlisten-Helfer_v*.zip") do if exist "%%~f" move /Y "%%~f" "!ARCHIVE_DIR!\" >nul
+for /d %%d in ("!RELEASE_DIR!\Themenlisten-Helfer_v*") do if exist "%%~d" move /Y "%%~d" "!ARCHIVE_DIR!\" >nul
+for %%f in ("!RELEASE_DIR!\RELEASE_NOTES_v*.md") do if exist "%%~f" move /Y "%%~f" "!ARCHIVE_DIR!\" >nul
 
 REM --- Archivierung als ZIP mit Versionsnummer ---
 set ZIPNAME=Themenlisten-Helfer_v!NEWVERSION!.zip
 if exist "!RELEASE_DIR!\!ZIPNAME!" del "!RELEASE_DIR!\!ZIPNAME!"
 powershell -Command "Compress-Archive -Path dist\!EXENAME!, 'data', 'output', '!IMG_FILE!', '!VERSION_FILE!', 'README.md', 'docs' -DestinationPath '!RELEASE_DIR!\!ZIPNAME!'"
+if errorlevel 1 (
+    echo [FEHLER] ZIP-Archiv konnte nicht erstellt werden.
+    exit /b 1
+)
 
 echo Archiv erstellt: !RELEASE_DIR!\!ZIPNAME!
 
@@ -118,21 +148,26 @@ set NOTESNAME=RELEASE_NOTES_v!NEWVERSION!.md
 set NOTESFILE=!RELEASE_DIR!\!NOTESNAME!
 > "!NOTESFILE!" echo # Release Notes v!NEWVERSION!
 >> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo ## Download
+>> "!NOTESFILE!" echo.
+>> "!NOTESFILE!" echo - [Release-Seite v!NEWVERSION!](https://github.com/GoroTech-Tools/Themenlisten-Helfer/releases/tag/v!NEWVERSION!)
+>> "!NOTESFILE!" echo - [ZIP direkt herunterladen](https://github.com/GoroTech-Tools/Themenlisten-Helfer/releases/download/v!NEWVERSION!/!ZIPNAME!)
+>> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo ## Enthalten
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo - Themenlisten-Helfer im Versionsstand `!NEWVERSION!`.
->> "!NOTESFILE!" echo - Release-Artefakte im Schema `dist\ThemenlistenHelfer_GUI.exe`, `Themenlisten-Helfer_v^^^<version^>^.zip` und `RELEASE_NOTES_v^^^<version^>^.md`.
+>> "!NOTESFILE!" echo - Release-Artefakte im Schema `dist\ThemenlistenHelfer.exe`, `Themenlisten-Helfer_vX.Y.Z.zip` und `RELEASE_NOTES_vX.Y.Z.md`.
 >> "!NOTESFILE!" echo - Dokumentation unter `docs/` sowie ergaenzende GitHub Release Notes im Release-Eintrag.
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo ## Artefakte
 >> "!NOTESFILE!" echo.
->> "!NOTESFILE!" echo - `dist\ThemenlistenHelfer_GUI.exe`
+>> "!NOTESFILE!" echo - `dist\ThemenlistenHelfer.exe`
 >> "!NOTESFILE!" echo - `release/!ZIPNAME!`
 >> "!NOTESFILE!" echo - `release/!NOTESNAME!`
 >> "!NOTESFILE!" echo.
 >> "!NOTESFILE!" echo ## Hinweise
 >> "!NOTESFILE!" echo.
->> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `dist\ThemenlistenHelfer_GUI.exe`
+>> "!NOTESFILE!" echo - Empfohlenes Testartefakt: `dist\ThemenlistenHelfer.exe`
 >> "!NOTESFILE!" echo - Vollstaendiger Commit-Verlauf: `https://github.com/GoroTech-Tools/Themenlisten-Helfer/commits/v!NEWVERSION!`
 
 echo Release Notes erstellt: !NOTESFILE!

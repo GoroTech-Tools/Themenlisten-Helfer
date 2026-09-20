@@ -86,6 +86,11 @@ jobs:
           $notesLines = @(
             "# Release Notes v${env:VERSION}",
             "",
+            "## Download",
+            "",
+            "- [Release-Seite v${env:VERSION}](https://github.com/${{ github.repository }}/releases/tag/v${env:VERSION})",
+            "- [ZIP direkt herunterladen](https://github.com/${{ github.repository }}/releases/download/v${env:VERSION}/$zipName)",
+            "",
             "## Enthalten",
             "",
             "- Themenlisten-Helfer im Versionsstand ${env:VERSION}.",

@@ -46,13 +46,13 @@ Erweiterter QA-Standard (wie in Schwesterprojekten):
 
 ## Artefakte
 
-- `dist/ThemenlistenHelfer_GUI.exe`
+- `dist/ThemenlistenHelfer.exe`
 - `release/Themenlisten-Helfer_v<version>.zip`
 - `release/RELEASE_NOTES_v<version>.md`
 
 ## Warum die EXE in `dist/` bleibt
 
-`dist/ThemenlistenHelfer_GUI.exe` ist die direkte PyInstaller-Ausgabe und damit die technisch maßgebliche EXE des Builds. Sie bleibt in `dist/`, weil:
+`dist/ThemenlistenHelfer.exe` ist die direkte PyInstaller-Ausgabe und damit die technisch maßgebliche EXE des Builds. Sie bleibt in `dist/`, weil:
 
 - dort der Build-Output unverändert und eindeutig nachvollziehbar abgelegt wird,
 - GitHub Releases die Datei direkt aus `dist/` übernehmen,
@@ -60,6 +60,17 @@ Erweiterter QA-Standard (wie in Schwesterprojekten):
 - der lokale Build-Entrypoint für Sonderfälle weiterhin eine umbenannte Kopie erzeugen kann, ohne den Standard-Release-Pfad zu ändern.
 
 Kurz: `dist/` ist die Build-Wahrheit, `release/` enthält die veröffentlichungsrelevanten Zusatzartefakte wie ZIP und Release Notes.
+
+## Archivierung früherer lokaler Releases
+
+Nach einem erfolgreichen lokalen Build verschiebt `scripts/build_tlh.bat` die
+vorherigen ZIP-Dateien, entpackten Release-Ordner und Release-Notes-Dateien nach
+`release/_Archiv/`. Dadurch bleibt im Ordner `release/` nur der aktuelle
+Versionsstand sichtbar. ZIPs und entpackte Release-Ordner bleiben lokal; die
+archivierten Release Notes werden weiterhin mit Git versioniert.
+
+GitHub-Releases und ihre Assets bleiben davon unberührt; sie stehen weiterhin
+unter **GitHub Releases** zur Verfügung.
 
 ## GitHub-Release-Hinweis
 
@@ -75,10 +86,11 @@ Zusätzlich erzeugt der Build bzw. der Release-Workflow für jede Version eine R
 
 Release Notes sollten enthalten:
 
+- direkte Links zur GitHub-Release-Seite und zum ZIP-Download
 - Funktionsänderungen
 - Breaking Changes
 - Migrationshinweise (falls Pfade/Dateiformate geändert wurden)
-- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `dist/ThemenlistenHelfer_GUI.exe`)
+- Validierungshinweis, welches Release-Artefakt lokal geprüft wurde (z. B. `dist/ThemenlistenHelfer.exe`)
 
 ## Release-Workflow testen (Tag-basiert)
 

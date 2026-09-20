@@ -36,3 +36,10 @@ Themenlisten/*
 
 # Local release extraction folders (do not version)
 release/Themenlisten-Helfer_v*/
+
+# Lokale Archivierung früherer Release-Artefakte
+# ZIPs und entpackte Ordner bleiben lokal; archivierte Release Notes bleiben versioniert.
+release/_Archiv/*
+!release/_Archiv/
+!release/_Archiv/*.md
+!release/_Archiv/.gitkeep

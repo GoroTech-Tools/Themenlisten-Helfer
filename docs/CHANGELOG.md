@@ -2,6 +2,24 @@
 
 Alle relevanten Änderungen an diesem Projekt werden hier dokumentiert.
 
+## [Unreleased]
+
+_Keine Änderungen._
+
+## [1.0.7] - 2026-09-20
+
+### Added (1.0.7)
+
+- Release Notes enthalten direkte Links zur GitHub-Release-Seite und zum versionsgenauen ZIP-Download.
+- Ältere lokale ZIPs, entpackte Release-Ordner und Release Notes werden nach `release/_Archiv/` archiviert.
+
+### Fixed (1.0.7)
+
+- Der lokale Build erkennt eine 32-Bit-`.venv` und verwendet automatisch einen verfügbaren 64-Bit-Python für PyInstaller und Abhängigkeiten.
+- Der lokale Build prüft den tatsächlichen PyInstaller-Artefaktnamen und bricht bei fehlender EXE oder fehlendem ZIP ab.
+
+---
+
 ## [1.0.5] - 2026-07-07
 
 ### Fixed (1.0.5)

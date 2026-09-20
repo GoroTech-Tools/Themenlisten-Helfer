@@ -37,8 +37,9 @@ Verbindlicher, reproduzierbarer Ablauf für Build, Tagging und GitHub-Release �
 6. **GitHub Release validieren**
    - Workflow `release.yml` erfolgreich.
    - Release-Titel im Produktschema: `Themenlisten-Helfer v...`.
+   - Release Notes enthalten direkte Links zur Release-Seite und zum ZIP-Download.
    - Assets vorhanden:
-     - `dist/ThemenlistenHelfer_GUI.exe`
+   - `dist/ThemenlistenHelfer.exe`
      - `release/Themenlisten-Helfer_v<version>.zip`
      - `release/RELEASE_NOTES_v<version>.md`
 
@@ -54,6 +55,7 @@ Ablauf:
 
 1. Startwert in `src/version.txt` prüfen.
 2. `scripts/build_tlh.bat` ausführen (Version wird erhöht, Artefakte + Release Notes werden erzeugt).
+   - Vorherige lokale ZIPs, entpackte Release-Ordner und Release Notes werden nach `release/_Archiv/` verschoben.
 3. Geänderte Dateien prüfen und committen (inkl. neuer Version).
 4. Tag exakt auf die neue Version setzen und pushen.
 5. GitHub-Release wie oben validieren.
@@ -73,6 +75,7 @@ Ablauf:
 - [ ] `src/version.txt` entspricht Zielversion
 - [ ] Changelog aktuell
 - [ ] Release Notes vorhanden (`release/RELEASE_NOTES_v<version>.md`)
+- [ ] Frühere lokale Release-Artefakte liegen unter `release/_Archiv/`
 - [ ] QA-Checkliste durchgeführt
 - [ ] Smoketest-Protokoll ausgefüllt
 - [ ] Tests grün

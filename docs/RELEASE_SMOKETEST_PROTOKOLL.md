@@ -6,7 +6,7 @@
 - Datum: `2026-06-05`
 - Tester/in: GitHub Copilot (Assistenz, CI-/Release-Verifikation)
 - Testumgebung (Windows/Office-Version): GitHub Actions `windows-latest` (lokale Office-Validierung ausstehend)
-- Testartefakt (Pfad): `dist/ThemenlistenHelfer_GUI.exe`
+- Testartefakt (Pfad): `dist/ThemenlistenHelfer.exe`
 
 ## 1) Automatisierte Kernprüfung
 
